@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { commonCardStyles } from "../../styles/card";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import React from "react";
-import { ProductType } from "../../utils/commonType";
+import { ProductType, TurfField } from "../../utils/commonType";
 
 const ProductCardWrapper = styled(Link)`
   ${commonCardStyles}
@@ -37,18 +37,19 @@ const ProductCardWrapper = styled(Link)`
 `;
 
 const ProductItem:React.FC<{
-  product: ProductType
-}> = ({ product }) => {
+  product?: ProductType
+  turf?: TurfField
+}> = ({ turf }) => {
   return (
-    <ProductCardWrapper key={product.id} to="/product/details">
+    <ProductCardWrapper key={turf?.id} to="/product/details">
       <div className="product-img">
-        <img className="object-fit-cover" src={product.imgSource} />
+        <img className="object-fit-cover" src={turf?.images[0]?.url || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbxo6nlmLyz7Z3vo2KkSmt82QiWQ0kXxqkNQ&s"} />
       </div>
       <div className="product-info">
-        <p className="font-bold">{product.title}</p>
+        <p className="font-bold">{turf?.name}</p>
         <div className="flex items-center justify-between text-sm font-medium">
-          <span className="text-gray">{product.brand}</span>
-          <span className="text-outerspace font-bold">${product.price}</span>
+          <span className="text-gray">{turf?.address}</span>
+          {/* <span className="text-outerspace font-bold">${turf?.prices[0].price}</span> */}
         </div>
       </div>
     </ProductCardWrapper>

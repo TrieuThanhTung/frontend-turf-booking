@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { products } from "../../data/data";
 import ProductItem from "./ProductItem";
 import { breakpoints } from "../../styles/themes/default";
-import { ProductType } from "../../utils/commonType";
+import { ProductType, TurfField } from "../../utils/commonType";
 import React from "react";
 
 const ProductListWrapper = styled.div`
@@ -18,13 +17,14 @@ const ProductListWrapper = styled.div`
 
 type ProductListProps = {
   products?: ProductType[]
+  turfs?: TurfField[]
 }
 
-const ProductList:React.FC<ProductListProps> = () => {
+const ProductList:React.FC<ProductListProps> = ({turfs}) => {
   return (
     <ProductListWrapper className="grid">
-      {products?.map((product) => {
-        return <ProductItem key={product.id} product={product} />;
+      {turfs?.map((turf) => {
+        return <ProductItem key={turf.id} turf={turf} />;
       })}
     </ProductListWrapper>
   );
