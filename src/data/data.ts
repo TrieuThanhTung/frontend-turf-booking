@@ -64,39 +64,21 @@ const sideMenuData = [
 const bannerData = [
   {
     id: "banner-1",
-    topText: "T-shirt / Tops",
-    titleText: "Summer Value Pack",
-    bottomText: "cool / colorful / comfy",
+    topText: "",
+    titleText: "",
+    bottomText: "",
     buttonLink: "/",
-    buttonText: "Shop Now",
-    imgSource: staticImages.hero_img1,
+    buttonText: "Đặt sân",
+    imgSource: staticImages.hero_fooball_1
   },
   {
     id: "banner-2",
-    topText: "Quality / Branded",
-    titleText: "Season Of Offers",
-    bottomText: "offers / heavy discount / coupons",
+    topText: "",
+    titleText: "",
+    bottomText: "",
     buttonLink: "/",
-    buttonText: "Shop Now",
-    imgSource: staticImages.hero_img2,
-  },
-  {
-    id: "banner-3",
-    topText: "Seasonal Attire / Collection",
-    titleText: "New Arrivals & Special",
-    bottomText: "stylish / trendy",
-    buttonLink: "/",
-    buttonText: "Shop Now",
-    imgSource: staticImages.hero_img3,
-  },
-  {
-    id: "banner-4",
-    topText: "Party & Wedding Dress",
-    titleText: "Fashionable Choice for Occasion",
-    bottomText: "offers / discounts / coupons",
-    buttonLink: "/",
-    buttonText: "Shop Now",
-    imgSource: staticImages.hero_img4,
+    buttonText: "Đặt sân",
+    imgSource: staticImages.hero_fooball_2
   },
 ];
 
@@ -205,7 +187,7 @@ const savingZoneData = [
 const products = [
   {
     id: 1,
-    imgSource: staticImages.product1,
+    imgSource: "https://img.thegioithethao.vn/thumbs/san-bong-da/da-nang/ngu-hanh-son/san-bong-da-kaka-sport-khu-do-thi-hoa-quy/san-bong-sport-khu-do-thi-hoa-quy-1_thumb_720.webp",
     title: "Active wear",
     brand: "Jhanvi’s Brand",
     price: 123.0,
@@ -597,22 +579,31 @@ const servicesData = [
   {
     id: "service_1",
     icon: staticImages.card_icon,
-    text: "Secure Payment",
+    text: "Wifi",
   },
   {
     id: "service_2",
-    icon: staticImages.size_icon,
-    text: "Size & fit",
+    icon: staticImages.card_icon,
+    text: "Trà đá",
   },
   {
     id: "service_3",
-    icon: staticImages.shipping_icon,
-    text: "Free Shipping",
+    icon: staticImages.card_icon,
+    text: "Nước uống",
   },
   {
     id: "service_4",
-    icon: staticImages.return_icon,
-    text: "Free Shipping & Returns",
+    icon: staticImages.shipping_icon,
+    text: "Bãi đỗ xe máy & oto",
+  },
+  {
+    id: "service_5",
+    icon: staticImages.card_icon,
+    text: "Căng tin"
+  },{
+    id: "service_6",
+    icon: staticImages.card_icon,
+    text: "Đồ ăn",
   },
 ];
 

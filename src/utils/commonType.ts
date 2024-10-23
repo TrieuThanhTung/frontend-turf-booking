@@ -4,4 +4,9 @@ export type ProductType = {
   title: string;
   brand: string;
   price: number;
-}[]
+}
+
+export type PreviewImageType = {
+  id: string;
+  imgSource: string;
+}

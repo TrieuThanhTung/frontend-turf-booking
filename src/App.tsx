@@ -9,6 +9,7 @@ import SignUp from "./screens/auth/SignUpScreen";
 import SignIn from "./screens/auth/SignInScreen";
 
 import Home from "./screens/home/HomeScreen";
+import ProductDetails from "./screens/product/ProductDetailsScreen";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<BaseLayout />}>
             <Route index element={<Home />} />
+            <Route path="product/:id" element={<ProductDetails />} />
           </Route>
 
           {/* auth screens */}

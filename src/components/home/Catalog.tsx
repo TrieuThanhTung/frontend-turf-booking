@@ -1,9 +1,15 @@
+import React from "react";
 import { Container, Section } from "../../styles/styles";
+import { ProductType } from "../../utils/commonType";
 import Title from "../common/Title";
-import { PropTypes } from "prop-types";
 import ProductList from "../product/ProductList";
 
-const Catalog = ({ catalogTitle, products }) => {
+type CatalogProps = {
+  catalogTitle: string
+  products: ProductType[]
+}
+
+const Catalog:React.FC<CatalogProps> = ({ catalogTitle, products }) => {
   return (
     <Section>
       <Container>
@@ -17,8 +23,3 @@ const Catalog = ({ catalogTitle, products }) => {
 };
 
 export default Catalog;
-
-Catalog.propTypes = {
-  catalogTitle: PropTypes.string,
-  products: PropTypes.array,
-};
