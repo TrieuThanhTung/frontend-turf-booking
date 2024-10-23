@@ -129,8 +129,10 @@ import confirmed_img from "../assets/images/confirmed_img.svg";
 // football
 import sign_up_messi from "../assets/images/sign_up_messi.jpeg"
 import sign_in_de_jong from "../assets/images/sign_in_de_jong.jpeg"
+import football_logo from "../assets/images/football_logo.png"
 
 export const staticImages = {
+  football_logo,
   sign_up_messi,
   sign_in_de_jong,
   logo,

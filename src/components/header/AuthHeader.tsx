@@ -22,9 +22,9 @@ const AuthHeader = () => {
         <div className="header-wrap flex items-center justify-between">
           <SiteBrandWrapper to="/" className="inline-flex">
             <div className="brand-img-wrap flex items-center justify-center">
-              <img className="site-brand-img" src={staticImages.logo} alt="" />
+              <img className="site-brand-img" src={staticImages.football_logo} alt="" />
             </div>
-            <span className="site-brand-text">achats.</span>
+            <span className="site-brand-text">Turf</span>
           </SiteBrandWrapper>
           <div className="flex items-center">
             <ButtonGroupWrapper className="flex items-center">

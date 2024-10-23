@@ -135,11 +135,11 @@ const Header = () => {
               <div className="brand-img-wrap flex items-center justify-center">
                 <img
                   className="site-brand-img"
-                  src={staticImages.logo}
+                  src={staticImages.football_logo}
                   alt="site logo"
                 />
               </div>
-              <span className="site-brand-text text-outerspace">achats.</span>
+              <span className="site-brand-text text-outerspace">Turf</span>
             </SiteBrandWrapper>
           </div>
           <NavigationAndSearchWrapper className="flex items-center">
