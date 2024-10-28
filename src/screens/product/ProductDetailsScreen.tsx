@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import { Container } from "../../styles/styles";
 import './Product.css'
-import { product_one } from "../../data/data";
 import ProductPreview from "../../components/product/ProductPreview";
 import { Link } from "react-router-dom";
 import { BaseLinkGreen } from "../../styles/button";
-import { currencyFormat, VNDFormating } from "../../utils/helper";
+import { VNDFormating } from "../../utils/helper";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import ProductDescriptionTab from "../../components/product/ProductDescriptionTab";
 import ProductSimilar from "../../components/product/ProductSimilar";
@@ -15,6 +14,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import TurfApi from "../../api/TurfApi";
 import Rating from '@mui/material/Rating';
+import BasicDatePicker from "../../components/Helper/BasicDatePicker";
 
 const DetailsScreenWrapper = styled.main`
   margin: 40px 0;
@@ -198,12 +198,20 @@ const ProductDetailsScreen = () => {
               <div style={{display: "flex", flexWrap: "wrap"}}>
                 {dataTurf.prices.map((priceOption, index) => (
                   <div className="frame-price" key={index}>
-                    <p>{priceOption.start_time} - {priceOption.end_time}</p>
+                    <p> <b> {priceOption.start_time} - {priceOption.end_time} </b> </p>
                     <span className="flex items-center justify-center font-medium text-outerspace">
                       {VNDFormating(priceOption.price)}
                     </span>
                   </div>
                 ))}
+              </div>
+            </ProductSizeWrapper>
+            <ProductSizeWrapper>
+              <div className="prod-size-top flex items-center flex-wrap">
+                <p className="text-lg font-semibold text-outerspace">
+                  Ngày
+                </p>
+                <BasicDatePicker />
               </div>
             </ProductSizeWrapper>
             <div className="btn-and-price flex items-center flex-wrap">
@@ -215,11 +223,8 @@ const ProductDetailsScreen = () => {
                 <span className="prod-add-btn-icon">
                   <i className="bi bi-cart2"></i>
                 </span>
-                <span className="prod-add-btn-text">Add to cart</span>
+                <span className="prod-add-btn-text"> <b> Đặt </b></span>
               </BaseLinkGreen>
-              <span className="prod-price text-xl font-bold text-outerspace">
-                {currencyFormat(product_one.price)}
-              </span>
             </div>
             <ProductServices />
           </ProductDetailsWrapper>
