@@ -357,7 +357,7 @@ const feedbackData = [
     designation: "Marketing Manger",
     rating: 3,
     feedbackText:
-      "I am incredibly pleased with my recent shopping experience on this clothing ecommerce website. The user-friendly interface made it a breeze to browse through a wide range of stylish options. The variety of sizes and styles available was impressive, and I found the perfect outfit for a special occasion. ",
+      "Sân bóng rất đẹp, mặt sân cỏ nhân tạo êm chân. Tuy nhiên, hệ thống chiếu sáng hơi yếu, đặc biệt ở góc sân. Nhân viên phục vụ rất nhiệt tình, hỗ trợ đặt sân nhanh chóng. Tôi rất hài lòng với trải nghiệm tại đây",
   },
   {
     id: "feedback-2",
@@ -366,7 +366,7 @@ const feedbackData = [
     designation: "Teacher",
     rating: 4,
     feedbackText:
-      "This clothing ecommerce website has become my go-to destination for fashion finds. The selection is fantastic, catering to various tastes and preferences. From casual wear to elegant pieces, I always discover something unique and stylish. The website's organization and clear product images make it easy to make informed choices. ",
+      "Mặt sân rất phẳng và có cỏ nhân tạo mềm, giúp di chuyển dễ dàng và giảm nguy cơ trượt ngã. Đặc biệt, sân còn thoát nước rất nhanh sau mưa",
   },
   {
     id: "feedback-3",
@@ -375,7 +375,7 @@ const feedbackData = [
     designation: "Student",
     rating: 4,
     feedbackText:
-      "I want to express my gratitude for the exceptional service provided by this clothing ecommerce website. Not only is the website intuitive and easy to navigate, but the customer service team also went above and beyond to assist me with a query. ",
+      "Đèn ở đây khá sáng, nhưng tập trung nhiều ở trung tâm sân và hơi thiếu ở hai biên. Có thể gặp khó khăn trong việc quan sát ở biên.",
   },
   {
     id: "feedback-4",
@@ -384,7 +384,7 @@ const feedbackData = [
     designation: "Fashion Designer",
     rating: 4,
     feedbackText:
-      "I recently made a purchase from this clothing ecommerce website, and I couldn't be happier with my experience. The website is well-designed, making it easy to navigate and find the items I was looking for. The product descriptions were detailed, helping me make informed decisions.",
+      "Đèn hơi yếu và không đủ sáng cho các trận đấu muộn. Một số bóng đèn còn bị nhấp nháy nên cần phải thay mới."
   },
 ];
 
@@ -651,15 +651,8 @@ const productDescriptionTabHeads = [
     id: "tab-comments",
     tabHead: "tabComments",
     tabText: "User Comments",
-    badgeValue: 10,
-    badgeColor: "purple",
-  },
-  {
-    id: "tab-QNA",
-    tabHead: "tabQNA",
-    tabText: "Question & Answer",
-    badgeValue: 4,
-    badgeColor: "outerspace",
+    badgeValue: null,
+    badgeColor: "",
   },
 ];
 

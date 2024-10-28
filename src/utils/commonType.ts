@@ -6,9 +6,10 @@ export type ProductType = {
   price: number;
 }
 
-export type PreviewImageType = {
+export type PreviewImageTypeType = {
   id: string;
-  imgSource: string;
+  imgSource?: string;
+  url?: string;
 }
 
 export interface TurfField {
@@ -20,13 +21,13 @@ export interface TurfField {
   location_lon: number;
   rating: number;
   status: "ENABLE" | "DISABLE"; // Use a string literal type for status
-  images: Image[];
+  images: ImageType[];
   prices: Price[];
   createdAt: string; // Assuming format remains the same
   updatedAt: string; // Assuming format remains the same
 }
 
-export interface Image {
+export interface ImageType {
   id: number;
   url: string;
 }

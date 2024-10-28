@@ -1,0 +1,14 @@
+.frame-price {
+  background: #DBE6FE;
+  border: 1px solid #93B4FD;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  padding: 12px 7px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 5px 10px;
+}
+
+.frame-price:hover {
+  background: #e8ebf1;
+}

@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
-import { PreviewImageType } from "../../utils/commonType";
+import { staticImages } from "../../utils/images";
+import { ImageType } from "../../utils/commonType";
 
 const ProductPreviewWrapper = styled.div`
   grid-template-columns: 72px auto;
@@ -81,11 +82,15 @@ const ProductPreviewWrapper = styled.div`
 `;
 
 const ProductPreview: React.FC<{
-  previewImages: PreviewImageType[];
+  previewImages: ImageType[];
 }> = ({ previewImages }) => {
   const [activePreviewImage, setActivePreviewImage] = useState<string>(
-    previewImages[0].imgSource
+    previewImages[0]?.url || staticImages.hero_fooball_1
   );
+
+  useEffect(() => {
+    setActivePreviewImage(previewImages[0]?.url)
+  }, [previewImages])
 
   const handlePreviewImageChange = (previewImage: string) => {
     setActivePreviewImage(previewImage);
@@ -94,16 +99,16 @@ const ProductPreview: React.FC<{
   return (
     <ProductPreviewWrapper className="grid items-center">
       <div className="preview-items w-full">
-        {previewImages.map((previewImage) => {
+        {previewImages?.map((previewImage) => {
           return (
             <div
               className="preview-item-wrapper"
               key={previewImage.id}
-              onClick={() => handlePreviewImageChange(previewImage.imgSource)}
+              onClick={() => handlePreviewImageChange(previewImage.url)}
             >
               <div className="preview-item">
                 <img
-                  src={previewImage.imgSource}
+                  src={previewImage.url}
                   alt=""
                   className="object-fit-cover"
                 />

@@ -2,12 +2,9 @@ import styled from "styled-components";
 import { HeaderMainWrapper, SiteBrandWrapper } from "../../styles/header";
 import { Container } from "../../styles/styles";
 import { staticImages } from "../../utils/images";
-import { navMenuData } from "../../data/data";
 import { Link, useLocation } from "react-router-dom";
 import { Input, InputGroupWrapper } from "../../styles/form";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
-// import { useDispatch } from "react-redux";
-// import { toggleSidebar } from "../../redux/slices/sidebarSlice";
 
 const NavigationAndSearchWrapper = styled.div`
   column-gap: 20px;
@@ -43,48 +40,6 @@ const NavigationAndSearchWrapper = styled.div`
   @media (max-width: ${breakpoints.lg}) {
     width: 100%;
     justify-content: flex-end;
-  }
-`;
-
-const NavigationMenuWrapper = styled.nav`
-  .nav-menu-list {
-    margin-left: 20px;
-
-    @media (max-width: ${breakpoints.lg}) {
-      flex-direction: column;
-    }
-  }
-
-  .nav-menu-item {
-    margin-right: 20px;
-    margin-left: 20px;
-
-    @media (max-width: ${breakpoints.xl}) {
-      margin-left: 16px;
-      margin-right: 16px;
-    }
-  }
-
-  .nav-menu-link {
-    &.active {
-      color: ${defaultTheme.color_outerspace};
-      font-weight: 700;
-    }
-
-    &:hover {
-      color: ${defaultTheme.color_outerspace};
-    }
-  }
-
-  @media (max-width: ${breakpoints.lg}) {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 260px;
-    background: ${defaultTheme.color_white};
-    height: 100%;
-    z-index: 999;
-    display: none;
   }
 `;
 
@@ -143,22 +98,6 @@ const Header = () => {
             </SiteBrandWrapper>
           </div>
           <NavigationAndSearchWrapper className="flex items-center">
-            <NavigationMenuWrapper>
-              <ul className="nav-menu-list flex items-center">
-                {navMenuData?.map((menu) => {
-                  return (
-                    <li className="nav-menu-item" key={menu.id}>
-                      <Link
-                        to={menu.menuLink}
-                        className="nav-menu-link text-base font-medium text-gray"
-                      >
-                        {menu.menuText}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </NavigationMenuWrapper>
             <form className="search-form">
               <InputGroupWrapper className="input-group">
                 <span className="input-icon flex items-center justify-center text-xl text-gray">
@@ -167,7 +106,7 @@ const Header = () => {
                 <Input
                   type="text"
                   className="input-control w-full"
-                  placeholder="Search"
+                  placeholder="Tìm kiếm ..."
                 />
               </InputGroupWrapper>
             </form>

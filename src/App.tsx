@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<BaseLayout />}>
             <Route index element={<Home />} />
-            <Route path="product/:id" element={<ProductDetails />} />
+            <Route path="/turf/:id" element={<ProductDetails />} />
           </Route>
 
           {/* auth screens */}

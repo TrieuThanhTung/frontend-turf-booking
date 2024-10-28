@@ -41,7 +41,7 @@ const ProductItem:React.FC<{
   turf?: TurfField
 }> = ({ turf }) => {
   return (
-    <ProductCardWrapper key={turf?.id} to="/product/details">
+    <ProductCardWrapper key={turf?.id} to={`/turf/${turf?.id}`}>
       <div className="product-img">
         <img className="object-fit-cover" src={turf?.images[0]?.url || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbxo6nlmLyz7Z3vo2KkSmt82QiWQ0kXxqkNQ&s"} />
       </div>

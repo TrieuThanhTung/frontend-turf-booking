@@ -138,9 +138,8 @@ const ProductDescriptionTab = () => {
                   onClick={() => handleTabChange(tab.tabHead)}
                 >
                   <span
-                    className={`${
-                      tab.tabHead === activeDesTab ? "text-sea-green" : ""
-                    }`}
+                    className={`${tab.tabHead === activeDesTab ? "text-sea-green" : ""
+                      }`}
                   >
                     {tab.tabText}
                   </span>
@@ -157,62 +156,27 @@ const ProductDescriptionTab = () => {
           </div>
           <div className="tabs-contents">
             <div
-              className={`tabs-content ${
-                activeDesTab === "tabDescription" ? "show" : ""
-              }`}
+              className={`tabs-content ${activeDesTab === "tabDescription" ? "show" : ""
+                }`}
             >
               <ContentStylings>
                 <p>
-                  100% Bio-washed Cotton makes the fabric extra soft & silky.
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Consectetur, odio. Infinite range of matte-finish HD prints.
-                </p>
-                <h4>Specifications:</h4>
-                <ul>
-                  <li>Fabric: Bio-washed Cotton</li>
-                  <li>Pattern: Printed</li>
-                  <li>Fit: Regular-fit</li>
-                  <li>Nect: Round Neck</li>
-                  <li>Sleeve: Half-sleeves</li>
-                  <li>Style: Casual Wear</li>
-                </ul>
-                <p>
-                  *Important: Please make sure that the mobile number is filled
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Provident, blanditiis.
-                </p>
-                <h4>Why should you shop at Outfit store?</h4>
-                <ul>
-                  <li>Guranteed Good material quality</li>
-                  <li>Rate convection stitsching.</li>
-                </ul>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Beatae ipsam nostrum praesentium nulla deleniti, facere
-                  mollitia dolore laboriosam, non iure deserunt alias repellat
-                  perspiciatis asperiores ab quia nam tenetur voluptate sint
-                  animi! Vitae aliquam cupiditate iste fuga expedita? Odio,
-                  impedit?
+                  Sân bóng The One Gamuda được nhiều người chơi biết đến vì địa điểm sân thuộc hệ thống khu đô thị Gamuda Gardens - nổi tiếng là 1 trong những khu đô thị đáng sống nhất ở Hà Nội và vị trí đắc địa cách trung tâm Hà Nội chỉ 25 phút đi xe. Ngoài ra, The One Gamuda còn thu hút người chơi nhờ các dịch vụ tiện ích, chất lượng sân đạt chuẩn, trang thiết bị hiện đại đáp ứng nhu cầu người chơi.
                 </p>
                 <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Pariatur, fugiat.
+                  Sân bóng đá The One Gamuda có quy mô 3 sân đạt chuẩn kích thước 7 hoặc 11 người, phù hợp cho cả giải đấu lớn và giao hữu.
+                  Số Lượng sân : 01 sân 7 người, 02 sân 11 người
+                  Kích Thước sân : 1 sân Dài (55m) Ngang (35m) , 2 sân Dài (90m) Ngang (45m)
+                  Tổng diện tích : 1925m2, 2x4050m2
+                  Tình trạng kinh doanh : Tốt
                 </p>
               </ContentStylings>
             </div>
             <div
-              className={`tabs-content content-stylings ${
-                activeDesTab === "tabComments" ? "show" : ""
-              }`}
+              className={`tabs-content content-stylings ${activeDesTab === "tabComments" ? "show" : ""
+                }`}
             >
               User comments here.
-            </div>
-            <div
-              className={`tabs-content content-stylings ${
-                activeDesTab === "tabQNA" ? "show" : ""
-              }`}
-            >
-              Question & Answers
             </div>
           </div>
         </DescriptionTabsWrapper>
