@@ -132,8 +132,10 @@ import sign_in_de_jong from "../assets/images/sign_in_de_jong.jpeg"
 import football_logo from "../assets/images/football_logo.png"
 import hero_fooball_1 from "../assets/images/hero_fooball_1.jpg"
 import hero_fooball_2 from "../assets/images/hero_fooball_2.jpg"
+import ground_football from "../assets/images/ground-football.jpeg"
 
 export const staticImages = {
+  ground_football,
   hero_fooball_1,
   hero_fooball_2,
   football_logo,

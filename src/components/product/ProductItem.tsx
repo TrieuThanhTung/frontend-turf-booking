@@ -4,6 +4,7 @@ import { commonCardStyles } from "../../styles/card";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import React from "react";
 import { ProductType, TurfField } from "../../utils/commonType";
+import { staticImages } from "../../utils/images";
 
 const ProductCardWrapper = styled(Link)`
   ${commonCardStyles}
@@ -43,13 +44,12 @@ const ProductItem:React.FC<{
   return (
     <ProductCardWrapper key={turf?.id} to={`/turf/${turf?.id}`}>
       <div className="product-img">
-        <img className="object-fit-cover" src={turf?.images[0]?.url || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbxo6nlmLyz7Z3vo2KkSmt82QiWQ0kXxqkNQ&s"} />
+        <img className="object-fit-cover" src={turf?.images[0]?.url || staticImages.ground_football} />
       </div>
       <div className="product-info">
         <p className="font-bold">{turf?.name}</p>
         <div className="flex items-center justify-between text-sm font-medium">
           <span className="text-gray">{turf?.address}</span>
-          {/* <span className="text-outerspace font-bold">${turf?.prices[0].price}</span> */}
         </div>
       </div>
     </ProductCardWrapper>

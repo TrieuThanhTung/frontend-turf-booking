@@ -85,11 +85,13 @@ const ProductPreview: React.FC<{
   previewImages: ImageType[];
 }> = ({ previewImages }) => {
   const [activePreviewImage, setActivePreviewImage] = useState<string>(
-    previewImages[0]?.url || staticImages.hero_fooball_1
+    staticImages.ground_football
   );
 
   useEffect(() => {
-    setActivePreviewImage(previewImages[0]?.url)
+    if (previewImages?.length > 0) {
+      setActivePreviewImage(previewImages[0]?.url)
+    }
   }, [previewImages])
 
   const handlePreviewImageChange = (previewImage: string) => {
