@@ -183,7 +183,6 @@ const ProductDetailsScreen = () => {
             <div className="flex items-center rating-and-comments flex-wrap">
               <div className="prod-rating flex items-center">
                 <Rating name="read-only" value={dataTurf?.rating | 0} readOnly />
-                <span className="text-gray text-xs">{dataTurf?.rating}</span>
               </div>
             </div>
 
