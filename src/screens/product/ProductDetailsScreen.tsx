@@ -179,6 +179,7 @@ const ProductDetailsScreen = () => {
           <ProductPreview previewImages={dataTurf.images} />
           <ProductDetailsWrapper>
             <h2 className="prod-title">{dataTurf?.name}</h2>
+            <p className="prod-title" style={{marginBottom: '10px'}}>Địa chỉ: {dataTurf?.address}</p>
             <div className="flex items-center rating-and-comments flex-wrap">
               <div className="prod-rating flex items-center">
                 <Rating name="read-only" value={dataTurf?.rating | 0} readOnly />

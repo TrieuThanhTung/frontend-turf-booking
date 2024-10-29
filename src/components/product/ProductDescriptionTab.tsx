@@ -6,6 +6,7 @@ import { ContentStylings } from "../../styles/styles";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import Map from "../map/Map";
 import "./ProductDesTab.css"
+import { LocationType } from "../map/data/Util";
 
 const DetailsContent = styled.div`
   margin-top: 60px;
@@ -125,6 +126,7 @@ const ProductDescriptionTab = () => {
   const handleTabChange = (tabHead: string) => {
     setActiveDesTab(tabHead);
   };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [centerLocation, setCenterLocation] = useState<LocationType>({
     lat: 21.0245,
     lon: 105.84117

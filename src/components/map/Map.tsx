@@ -93,6 +93,7 @@ const Map: React.FC<MapProps> = ({ filter, centerLocation }) => {
           lat: position.coords.latitude,
           lon: position.coords.longitude,
         });
+        console.log(position.coords.latitude, position.coords.longitude,)
       });
     }
   }, []);
