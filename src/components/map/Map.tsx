@@ -100,7 +100,7 @@ const Map: React.FC<MapProps> = ({ filter, centerLocation }) => {
   return (
     <MapContainer
       center={[userLocation.lat, userLocation.lon]}
-      zoom={13}
+      zoom={20}
       scrollWheelZoom={true}
     >
       <TileLayer

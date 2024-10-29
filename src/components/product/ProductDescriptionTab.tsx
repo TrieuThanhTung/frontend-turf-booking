@@ -4,6 +4,8 @@ import { productDescriptionTabHeads } from "../../data/data";
 import Title from "../common/Title";
 import { ContentStylings } from "../../styles/styles";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
+import Map from "../map/Map";
+import "./ProductDesTab.css"
 
 const DetailsContent = styled.div`
   margin-top: 60px;
@@ -123,6 +125,10 @@ const ProductDescriptionTab = () => {
   const handleTabChange = (tabHead: string) => {
     setActiveDesTab(tabHead);
   };
+  const [centerLocation, setCenterLocation] = useState<LocationType>({
+    lat: 21.0245,
+    lon: 105.84117
+  })
   return (
     <DetailsContent>
       <Title titleText={"Product Description"} />
@@ -180,6 +186,9 @@ const ProductDescriptionTab = () => {
             </div>
           </div>
         </DescriptionTabsWrapper>
+        <Map  
+          centerLocation={centerLocation}
+        />
       </div>
     </DetailsContent>
   );
