@@ -10,6 +10,7 @@ import SignIn from "./screens/auth/SignInScreen";
 
 import Home from "./screens/home/HomeScreen";
 import ProductDetails from "./screens/product/ProductDetailsScreen";
+import MapScreen from "./screens/map/MapScreen";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<BaseLayout />}>
             <Route index element={<Home />} />
             <Route path="/turf/:id" element={<ProductDetails />} />
+            <Route path="/map" element={<MapScreen />} />
           </Route>
 
           {/* auth screens */}
