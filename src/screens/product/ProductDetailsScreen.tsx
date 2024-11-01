@@ -14,7 +14,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import TurfApi from "../../api/TurfApi";
 import Rating from '@mui/material/Rating';
-import BasicDatePicker from "../../components/Helper/BasicDatePicker";
+import { ToastContainer, toast } from 'react-toastify';
+import { BasicDatePicker } from "../../components/Helper/BasicDatePicker";
+import dayjs from "dayjs";
 
 const DetailsScreenWrapper = styled.main`
   margin: 40px 0;
@@ -172,8 +174,37 @@ const ProductDetailsScreen = () => {
     }
   }, [id]); // Add 'id' to the dependency array to re-run the effect when 'id' changes
 
+  const[valueDate, setValueDate] = useState<dayjs.Dayjs | null>();
+
+  const [turfPriceId, setTurfPriceId] = useState(0)
+
+  const handleBooking = async () => {
+    const dataBooking = {
+      turfId: Number(id),
+      turfPriceId: turfPriceId,
+      dateBooking: `${valueDate?.$y}-${valueDate?.$M + 1}-${valueDate?.$D}`
+    }
+    if (!dataBooking.turfId  || !dataBooking.turfPriceId || !dataBooking.dateBooking) return;
+    try {
+      const res = await TurfApi.createBooking(dataBooking)
+      console.log(res) 
+      if (res.status === 201) {
+        toast.success('Đặt sân thành công')
+      } else {
+        toast.error('Đặt sân thất bại - ' + res.data.message)
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <DetailsScreenWrapper>
+      <ToastContainer 
+        autoClose={2000}
+        position="top-right" 
+      />
       <Container>
         <DetailsContent className="grid">
           <ProductPreview previewImages={dataTurf.images} />
@@ -196,14 +227,26 @@ const ProductDetailsScreen = () => {
                 </Link>
               </div>
               <div style={{display: "flex", flexWrap: "wrap"}}>
-                {dataTurf.prices.map((priceOption, index) => (
-                  <div className="frame-price" key={index}>
-                    <p> <b> {priceOption.start_time} - {priceOption.end_time} </b> </p>
-                    <span className="flex items-center justify-center font-medium text-outerspace">
-                      {VNDFormating(priceOption.price)}
-                    </span>
-                  </div>
-                ))}
+                {dataTurf.prices.map((priceOption, index) => {
+                  if (turfPriceId === priceOption.id) {
+                    return (
+                      <div className="frame-price" style={{backgroundColor: '#f2f3f5'}} key={index} onClick={() => setTurfPriceId(priceOption.id)}>
+                        <p> <b> {priceOption.start_time} - {priceOption.end_time} </b> </p>
+                        <span className="flex items-center justify-center font-medium text-outerspace">
+                          {VNDFormating(priceOption.price)}
+                        </span>
+                      </div>
+                    )
+                  }
+                  return (
+                    <div className="frame-price" key={index} onClick={() => setTurfPriceId(priceOption.id)}>
+                      <p> <b> {priceOption.start_time} - {priceOption.end_time} </b> </p>
+                      <span className="flex items-center justify-center font-medium text-outerspace">
+                        {VNDFormating(priceOption.price)}
+                      </span>
+                    </div>
+                  )
+                })}
               </div>
             </ProductSizeWrapper>
             <ProductSizeWrapper>
@@ -211,12 +254,13 @@ const ProductDetailsScreen = () => {
                 <p className="text-lg font-semibold text-outerspace">
                   Ngày
                 </p>
-                <BasicDatePicker />
+                <BasicDatePicker setValue={setValueDate}/>
               </div>
             </ProductSizeWrapper>
             <div className="btn-and-price flex items-center flex-wrap">
               <BaseButtonGreen
                 className="prod-add-btn"
+                onClick={handleBooking}
               >
                 <span className="prod-add-btn-icon">
                   <i className="bi bi-cart2"></i>

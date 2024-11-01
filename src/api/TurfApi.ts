@@ -12,6 +12,14 @@ class TurfApi {
   public getTurfById = async (id: string | number) => {
     return await axiosNonToken.get(`/api/turfs/${id}`);
   }
-}
+
+  public createBooking = async (data: {
+    turfId: number,
+    turfPriceId: number,
+    dateBooking: string,
+  }) => {
+    return await axiosNonToken.post("/api/bookings", data);
+  }
+} 
 
 export default new TurfApi();
