@@ -1,6 +1,14 @@
 import axiosNonToken from "./ApiNonToken";
+import axiosToken from "./ApiToken";
 
 class TurfApi {
+  public signin = async (data: {
+    email: string,
+    password: string,
+  }) => {
+    return await axiosNonToken.post("/api/auth/login", data);
+  }
+
   public getTurfs = async (page?: string) => {
     let url = "/api/turfs";
     if (page) {
@@ -18,7 +26,7 @@ class TurfApi {
     turfPriceId: number,
     dateBooking: string,
   }) => {
-    return await axiosNonToken.post("/api/bookings", data);
+    return await axiosToken.post("/api/bookings", data);
   }
 } 
 

@@ -5,9 +5,12 @@ import { staticImages } from "../../utils/images";
 import AuthOptions from "../../components/auth/AuthOptions";
 import { FormElement, Input } from "../../styles/form";
 import PasswordInput from "../../components/auth/PasswordInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BaseButtonBlack } from "../../styles/button";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
+import { useState } from "react";
+import TurfApi from "../../api/TurfApi";
+import { ToastContainer, toast } from 'react-toastify';
 
 const SignInScreenWrapper = styled.section`
   .form-separator {
@@ -40,8 +43,34 @@ const SignInScreenWrapper = styled.section`
 `;
 
 const SignInScreen = () => {
+  const navigate = useNavigate()  // eslint-disable-line react-hooks/rules-of-hooks
+
+  const [email, setEmail] = useState('')
+
+  const [password, setPassword] = useState('')
+
+
+  const handleSignIn = async () => {
+    console.log(email, password)
+    try {
+      const res = await TurfApi.signin({
+        email: email,
+        password: password,
+      })
+      if (res.status === 200) {
+        localStorage.setItem('accessToken', res.data.data.accessToken)
+        navigate('/')
+      } else {
+        toast.error(res.data.message)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <SignInScreenWrapper>
+      <ToastContainer />
       <FormGridWrapper>
         <Container>
           <div className="form-grid-content">
@@ -71,16 +100,17 @@ const SignInScreen = () => {
                     placeholder=""
                     name=""
                     className="form-elem-control"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </FormElement>
-                <PasswordInput fieldName="Password" name="password" />
+                <PasswordInput fieldName="Password" name="password" setPassword={setPassword}/>
                 <Link
                   to="/reset"
                   className="form-elem-text text-end font-medium"
                 >
                   Forgot your password?
                 </Link>
-                <BaseButtonBlack type="submit" className="form-submit-btn">
+                <BaseButtonBlack type="button" className="form-submit-btn" onClick={handleSignIn}>
                   Sign In
                 </BaseButtonBlack>
               </form>
