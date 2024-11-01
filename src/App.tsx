@@ -11,6 +11,7 @@ import SignIn from "./screens/auth/SignInScreen";
 import Home from "./screens/home/HomeScreen";
 import ProductDetails from "./screens/product/ProductDetailsScreen";
 import MapScreen from "./screens/map/MapScreen";
+import ConfirmScreen from "./screens/user/ConfirmScreen";
 
 function App() {
 
@@ -23,9 +24,8 @@ function App() {
             <Route index element={<Home />} />
             <Route path="/turf/:id" element={<ProductDetails />} />
             <Route path="/map" element={<MapScreen />} />
+            <Route path="/confirm" element={<ConfirmScreen />} />
           </Route>
-
-          {/* auth screens */}
           <Route path="/" element={<AuthLayout />}>
             <Route path="sign_up" element={<SignUp />} />
             <Route path="sign_in" element={<SignIn />} />

@@ -3,7 +3,7 @@ import { Container } from "../../styles/styles";
 import './Product.css'
 import ProductPreview from "../../components/product/ProductPreview";
 import { Link } from "react-router-dom";
-import { BaseLinkGreen } from "../../styles/button";
+import { BaseButtonGreen } from "../../styles/button";
 import { VNDFormating } from "../../utils/helper";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import ProductDescriptionTab from "../../components/product/ProductDescriptionTab";
@@ -215,16 +215,14 @@ const ProductDetailsScreen = () => {
               </div>
             </ProductSizeWrapper>
             <div className="btn-and-price flex items-center flex-wrap">
-              <BaseLinkGreen
-                to="/cart"
-                as={BaseLinkGreen}
+              <BaseButtonGreen
                 className="prod-add-btn"
               >
                 <span className="prod-add-btn-icon">
                   <i className="bi bi-cart2"></i>
                 </span>
                 <span className="prod-add-btn-text"> <b> Đặt </b></span>
-              </BaseLinkGreen>
+              </BaseButtonGreen>
             </div>
             <ProductServices />
           </ProductDetailsWrapper>
