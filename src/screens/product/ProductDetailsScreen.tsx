@@ -179,10 +179,11 @@ const ProductDetailsScreen = () => {
   const [turfPriceId, setTurfPriceId] = useState(0)
 
   const handleBooking = async () => {
+    const day = valueDate?.$D >= 10 ? valueDate?.$D : `0${valueDate?.$D}` 
     const dataBooking = {
       turfId: Number(id),
       turfPriceId: turfPriceId,
-      dateBooking: `${valueDate?.$y}-${valueDate?.$M + 1}-${valueDate?.$D}`
+      dateBooking: `${valueDate?.$y}-${valueDate?.$M + 1}-${day}`
     }
     if (!dataBooking.turfId  || !dataBooking.turfPriceId || !dataBooking.dateBooking) return;
     try {
@@ -207,7 +208,7 @@ const ProductDetailsScreen = () => {
       />
       <Container>
         <DetailsContent className="grid">
-          <ProductPreview previewImages={dataTurf.images} />
+          <ProductPreview previewImages={dataTurf?.images} />
           <ProductDetailsWrapper>
             <h2 className="prod-title">{dataTurf?.name}</h2>
             <p className="prod-title" style={{marginBottom: '10px'}}>Địa chỉ: {dataTurf?.address}</p>
