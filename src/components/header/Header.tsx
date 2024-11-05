@@ -73,7 +73,6 @@ const IconLinksWrapper = styled.div`
 
 const Header = () => {
   const location = useLocation();
-  // const dispatch = useDispatch();
 
   return (
     <HeaderMainWrapper className="header flex items-center">

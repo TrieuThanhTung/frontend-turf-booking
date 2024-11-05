@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { productDescriptionTabHeads } from "../../data/data";
 import Title from "../common/Title";
@@ -118,7 +118,11 @@ const DescriptionTabsWrapper = styled.div`
   }
 `;
 
-const ProductDescriptionTab = () => {
+type Props = {
+  turfLocation?: LocationType
+}
+
+const ProductDescriptionTab: React.FC<Props>  = ({turfLocation}) => {
   const [activeDesTab, setActiveDesTab] = useState(
     productDescriptionTabHeads[0].tabHead
   );
@@ -190,6 +194,7 @@ const ProductDescriptionTab = () => {
         </DescriptionTabsWrapper>
         <Map  
           centerLocation={centerLocation}
+          turfLocation={turfLocation}
         />
       </div>
     </DetailsContent>

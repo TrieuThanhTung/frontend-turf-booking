@@ -17,6 +17,7 @@ import Rating from '@mui/material/Rating';
 import { ToastContainer, toast } from 'react-toastify';
 import { BasicDatePicker } from "../../components/Helper/BasicDatePicker";
 import dayjs from "dayjs";
+import { LocationType } from "../../components/map/data/Util";
 
 const DetailsScreenWrapper = styled.main`
   margin: 40px 0;
@@ -159,10 +160,16 @@ const ProductDetailsScreen = () => {
     updatedAt: "16:23 10/17/2024"
   })
 
+  const [turfLocation, setTurfLocation] = useState<LocationType>()
+
   const getTurfById = async (id: string) => {
     try {
       const res = await TurfApi.getTurfById(id)
       setDataTurf(res.data.data)  // Set the fetched data to the state
+      setTurfLocation({
+        lat: res.data.data.location_lat,
+        lon: res.data.data.location_lon
+      }) 
       console.log(res.data.data) // Log the fetched data to the console
     } catch (error) {
       console.log(error);
@@ -285,7 +292,7 @@ const ProductDetailsScreen = () => {
             <ProductServices />
           </ProductDetailsWrapper>
         </DetailsContent>
-        <ProductDescriptionTab />
+        <ProductDescriptionTab turfLocation={turfLocation}/>
         <ProductSimilar />
       </Container>
     </DetailsScreenWrapper>

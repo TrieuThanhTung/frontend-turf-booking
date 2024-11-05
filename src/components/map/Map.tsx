@@ -11,6 +11,7 @@ type MapProps = {
   filter?: string;
   setFilter: React.Dispatch<React.SetStateAction<string>>;
   centerLocation: LocationType;
+  turfLocation?: LocationType;
 };
 
 type ResetCenterViewType = {
@@ -35,7 +36,7 @@ const ResetCenterView: React.FC<ResetCenterViewType> = ({centerLocation}) => {
   return null;
 }
 
-const Map: React.FC<MapProps> = ({ filter, centerLocation }) => {
+const Map: React.FC<MapProps> = ({ filter, centerLocation, turfLocation }) => {
 
   const [userLocation, setUserLocation] = useState<{
     lat: number;
@@ -93,7 +94,6 @@ const Map: React.FC<MapProps> = ({ filter, centerLocation }) => {
           lat: position.coords.latitude,
           lon: position.coords.longitude,
         });
-        console.log(position.coords.latitude, position.coords.longitude,)
       });
     }
   }, []);
@@ -101,7 +101,7 @@ const Map: React.FC<MapProps> = ({ filter, centerLocation }) => {
   return (
     <MapContainer
       center={[userLocation.lat, userLocation.lon]}
-      zoom={14}
+      zoom={13}
       scrollWheelZoom={true}
     >
       <TileLayer
@@ -120,6 +120,12 @@ const Map: React.FC<MapProps> = ({ filter, centerLocation }) => {
       >
         <Popup>Your location</Popup>
       </Marker>
+      { turfLocation && <Marker
+        position={[turfLocation?.lat, turfLocation?.lon]}
+        icon={icon.searchLocationIcon}
+      >
+        <Popup>Your location</Popup>
+      </Marker> }
       <MarkerClusterGroup>
         {data?.elements.map((ele, index) => {
           const lat = ele.lat!;
@@ -160,7 +166,7 @@ const Map: React.FC<MapProps> = ({ filter, centerLocation }) => {
           }
         })}
       </MarkerClusterGroup>
-      <ResetCenterView centerLocation={centerLocation}/>
+      {turfLocation && <ResetCenterView centerLocation={turfLocation}/>}
     </MapContainer>
   );
 };
