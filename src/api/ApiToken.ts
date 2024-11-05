@@ -22,38 +22,5 @@ axiosToken.interceptors.response.use((response) => {
 },
 async (error: AxiosError) => {
   return error.response;
-  // if(error.response?.status !== 401) {
-  //   return error.response;
-  // }
-  // const refreshToken = localStorage.getItem('refreshToken')
-  // if(!refreshToken) {
-  //   localStorage.removeItem('accessToken');
-  //   localStorage.removeItem('refreshToken');
-  //   return error.response;
-  // }
-  // try {
-  //   const response = await axiosNonToken.post('/api/auth/refresh-token', {
-  //     refreshToken
-  //   })
-  //   if(response.status === 401) {
-  //     throw new Error()
-  //   }
-  //   if(response.status !== 200) {
-  //     return response;
-  //   }
-  //   if(response) {
-  //     localStorage.setItem('accessToken', response.data.data.accessToken)
-  //     localStorage.setItem('refreshToken', response.data.data.refreshToken)
-  //   }
-  //   const config = error.config!;
-  //   config.headers.Authorization = `Bearer ${response.data.accessToken}`
-  //   return await axiosToken(config)
-  // } catch (error) {
-  //   console.log(error)
-  //   localStorage.removeItem('accessToken');
-  //   localStorage.removeItem('refreshToken');
-  //   window.location.href = "/log-in"
-  //   return error;
-  // }
 });
 export default axiosToken;

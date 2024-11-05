@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Container } from "../../styles/styles";
 import './Product.css'
 import ProductPreview from "../../components/product/ProductPreview";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BaseButtonGreen } from "../../styles/button";
 import { VNDFormating } from "../../utils/helper";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
@@ -140,6 +140,7 @@ const ProductSizeWrapper = styled.div`
 `;
 
 const ProductDetailsScreen = () => {
+  const navigate = useNavigate()
   window.scrollTo(0, 0)
   const { id } = useParams(); // Get the 'id' parameter from the URL
 
@@ -185,12 +186,24 @@ const ProductDetailsScreen = () => {
       turfPriceId: turfPriceId,
       dateBooking: `${valueDate?.$y}-${valueDate?.$M + 1}-${day}`
     }
-    if (!dataBooking.turfId  || !dataBooking.turfPriceId || !dataBooking.dateBooking) return;
+    if (!valueDate) {
+      toast.error('Vui lòng chọn ngày đặt sân')
+      return;
+    }
+    if (dataBooking.turfPriceId === 0) {
+      toast.error('Vui lòng chọn thời gian')
+      return;
+    }
+    if (!dataBooking.turfId  || !dataBooking.turfPriceId ) return;
     try {
       const res = await TurfApi.createBooking(dataBooking)
-      console.log(res) 
       if (res.status === 201) {
         toast.success('Đặt sân thành công')
+      } else if (res.status === 401) {
+        toast.error('Yêu cầu đăng nhập')
+        setTimeout(() => {
+          navigate('/sign_in')
+        }, 1500)
       } else {
         toast.error('Đặt sân thất bại - ' + res.data.message)
       }
