@@ -6,17 +6,21 @@ import { useSearchParams } from "react-router-dom";
 import axios from 'axios';
 
 function MapScreen() {
+  window.scrollTo(0, 0)
+
   const [searchParams] = useSearchParams();
 
   const [turfLocation, setTurfLocation] = useState<LocationType>()
 
+  const [centerLocation, setCenterLocation] = useState<LocationType>({
+    lat: 21.0245,
+    lon: 105.84117
+  })
+
   const [userLocation, setUserLocation] = useState<{
     lat: number;
     lon: number;
-  }>({
-    lat: 21.0245,
-    lon: 105.84117,
-  });
+  }>();
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -89,7 +93,7 @@ function MapScreen() {
       <Map
         turfLocation={turfLocation}
         styleMap={styleMap}
-        centerLocation={userLocation}
+        centerLocation={centerLocation}
         userLocation={userLocation}
         routing={routingData}
       />

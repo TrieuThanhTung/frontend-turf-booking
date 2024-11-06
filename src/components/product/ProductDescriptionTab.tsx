@@ -196,6 +196,7 @@ const ProductDescriptionTab: React.FC<Props>  = ({turfLocation}) => {
         <div>
           <Link 
             to={`/map?turf_lat=${turfLocation?.lat}&turf_lon=${turfLocation?.lon}`}
+            className="instruction-links"
           >
             Chỉ đường
           </Link>
