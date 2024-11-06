@@ -1,3 +1,5 @@
+import { routex } from "./routex";
+
 export interface OverpassType {
   version: number;
   generator: string;
@@ -37,3 +39,5 @@ export interface PlaceType {
   display_name: string;
   boundingbox: [string, string, string, string]; // Array of strings representing coordinates
 }
+
+export type RoutingType = typeof routex
