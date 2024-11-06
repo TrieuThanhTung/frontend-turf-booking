@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, useMap, Polyline } from 'react-leaflet'
 import { useEffect, useState } from 'react';
 import ServiceApi from '../../api/ServiceApi';
 import { LocationType, OverpassType } from './data/Util';
@@ -6,6 +6,7 @@ import MarkerClusterGroup from 'react-leaflet-cluster';
 import L from "leaflet";
 
 import { icon } from "./data/Icon";
+import { routex } from './data/routex';
 
 type MapProps = {
   filter?: string;
@@ -99,6 +100,25 @@ const Map: React.FC<MapProps> = ({ filter, centerLocation, turfLocation, styleMa
     }
   }, []);
 
+  const limeOptions = { color: 'lime' }
+
+  const polygon = [
+    [ 105.793708, 21.024475],
+    [36.460353, 126.440674],
+    [ 106.793641, 21.034314 ],
+    [55.410343, 37.902312], //to rus
+  ]
+
+  // const pos = [
+  //   [36.460353, 126.440674],
+  //   [34.789594, 135.438084], //to jpn
+  //   [36.460353, 126.440674],
+  //   [55.410343, 37.902312], //to rus
+  //   [36.460353, 126.440674],
+  //   [40.085148, 116.552407] //to chi
+  // ];
+  
+
   return (
     <MapContainer
       style={styleMap}
@@ -126,8 +146,10 @@ const Map: React.FC<MapProps> = ({ filter, centerLocation, turfLocation, styleMa
         position={[turfLocation?.lat, turfLocation?.lon]}
         icon={icon.searchLocationIcon}
       >
-        <Popup>Your location</Popup>
+        <Popup>Turf location</Popup>
       </Marker> }
+      {/* <Polyline pathOptions={limeOptions} positions={pos} /> */}
+      <Polyline pathOptions={limeOptions} positions={polygon} />
       <MarkerClusterGroup>
         {data?.elements.map((ele, index) => {
           const lat = ele.lat!;

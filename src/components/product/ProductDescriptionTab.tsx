@@ -194,11 +194,15 @@ const ProductDescriptionTab: React.FC<Props>  = ({turfLocation}) => {
           </div>
         </DescriptionTabsWrapper>
         <div>
+          <Link 
+            to={`/map?turf_lat=${turfLocation?.lat}&turf_lon=${turfLocation?.lon}`}
+          >
+            Chỉ đường
+          </Link>
           <Map  
             centerLocation={centerLocation}
             turfLocation={turfLocation}
           />
-          <Link to={`/map?turf_lat=${turfLocation?.lat}&turf_lon=${turfLocation?.lon}`}>Chỉ đường</Link>
         </div>
       </div>
     </DetailsContent>
