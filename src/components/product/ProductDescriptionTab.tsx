@@ -7,6 +7,7 @@ import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import Map from "../map/Map";
 import "./ProductDesTab.css"
 import { LocationType } from "../map/data/Util";
+import { Link } from "react-router-dom";
 
 const DetailsContent = styled.div`
   margin-top: 60px;
@@ -192,10 +193,13 @@ const ProductDescriptionTab: React.FC<Props>  = ({turfLocation}) => {
             </div>
           </div>
         </DescriptionTabsWrapper>
-        <Map  
-          centerLocation={centerLocation}
-          turfLocation={turfLocation}
-        />
+        <div>
+          <Map  
+            centerLocation={centerLocation}
+            turfLocation={turfLocation}
+          />
+          <Link to={`/map?turf_lat=${turfLocation?.lat}&turf_lon=${turfLocation?.lon}`}>Chỉ đường</Link>
+        </div>
       </div>
     </DetailsContent>
   );

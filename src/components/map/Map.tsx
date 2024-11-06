@@ -12,6 +12,7 @@ type MapProps = {
   setFilter: React.Dispatch<React.SetStateAction<string>>;
   centerLocation: LocationType;
   turfLocation?: LocationType;
+  styleMap?: React.CSSProperties | undefined
 };
 
 type ResetCenterViewType = {
@@ -36,7 +37,7 @@ const ResetCenterView: React.FC<ResetCenterViewType> = ({centerLocation}) => {
   return null;
 }
 
-const Map: React.FC<MapProps> = ({ filter, centerLocation, turfLocation }) => {
+const Map: React.FC<MapProps> = ({ filter, centerLocation, turfLocation, styleMap }) => {
 
   const [userLocation, setUserLocation] = useState<{
     lat: number;
@@ -100,6 +101,7 @@ const Map: React.FC<MapProps> = ({ filter, centerLocation, turfLocation }) => {
 
   return (
     <MapContainer
+      style={styleMap}
       center={[userLocation.lat, userLocation.lon]}
       zoom={13}
       scrollWheelZoom={true}

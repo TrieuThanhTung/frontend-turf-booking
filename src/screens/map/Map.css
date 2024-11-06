@@ -4,3 +4,13 @@
   height: 500px;
   margin: 20px;
 }
+
+.small-map {
+  width: 300px;
+  height: 200px;
+}
+
+.large-map {
+  width: 100vw;
+  height: 100vh;
+}
