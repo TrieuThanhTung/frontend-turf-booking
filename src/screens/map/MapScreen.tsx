@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { LocationType, RoutingType } from '../../components/map/data/Util';
 import { useSearchParams } from "react-router-dom";
 import axios from 'axios';
+// import { routex } from '../../components/map/data/routex';
+import Instruction from '../../components/map/Instruction/Instruction';
 
 function MapScreen() {
   window.scrollTo(0, 0)
@@ -89,7 +91,7 @@ function MapScreen() {
   }
 
   return (
-    <>
+    <div style={{position: 'relative'}}>
       <Map
         turfLocation={turfLocation}
         styleMap={styleMap}
@@ -97,7 +99,8 @@ function MapScreen() {
         userLocation={userLocation}
         routing={routingData}
       />
-    </>
+      <Instruction routingData={routingData}/>
+    </div>
   )
 }
 

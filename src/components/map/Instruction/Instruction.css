@@ -1,0 +1,49 @@
+.instruction-container {
+  z-index: 2;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  width: 400px;
+  height: 80vh;
+  overflow: hidden;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.instruction-header {
+  margin: 0 8px;
+}
+
+.overview {
+  padding: 16px;
+  margin: 0px 8px 16px;
+  border-left: 4px solid rgba(0, 0, 255, 0.507);
+}
+
+.instruction-item {
+  display: flex;
+  height: 60px;
+}
+
+.instruction-icon {
+  width: 60px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.instruction-content {
+  flex: 1;
+  padding-left: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-bottom: 1px solid grey;
+}
+
+.bottom {
+  height: 30px;
+}
