@@ -1,3 +1,4 @@
+
 import './Instruction.css'
 import React from 'react'
 import TurnLeftIcon from '@mui/icons-material/TurnLeft';
@@ -25,7 +26,7 @@ const Instruction:React.FC<Props> = ({routingData}) => {
           {routingData?.paths[0].instructions.map((route, index) => {
             if (index === 0) {
               return (
-                <li className='instruction-item'>
+                <li key={index} className='instruction-item'>
                   <div className='instruction-icon'>
                     <PlaceIcon sx={{fontSize: '32px', color: 'green'}}/>
                   </div>
@@ -37,7 +38,7 @@ const Instruction:React.FC<Props> = ({routingData}) => {
               )  
             } else if (index === routingData?.paths[0].instructions.length - 1) {
               return (
-                <li className='instruction-item'>
+                <li key={index} className='instruction-item'>
                   <div className='instruction-icon'>
                     <PlaceIcon sx={{fontSize: '32px', color: 'red'}}/>
                   </div>
@@ -51,7 +52,7 @@ const Instruction:React.FC<Props> = ({routingData}) => {
             
             if (route.text.includes("Rẽ trái")) {
               return (
-                <li className='instruction-item'>
+                <li key={index} className='instruction-item'>
                   <div className='instruction-icon'>
                     <TurnLeftIcon sx={{fontSize: '32px'}}/>
                   </div>
@@ -63,7 +64,7 @@ const Instruction:React.FC<Props> = ({routingData}) => {
               )  
             }
             return (
-              <li className='instruction-item'>
+              <li key={index} className='instruction-item'>
                 <div className='instruction-icon'>
                   <TurnRightIcon sx={{fontSize: '32px'}}/>
                 </div>

@@ -82,7 +82,7 @@ function MapScreen() {
         lon: Number.parseFloat(searchParams.get('turf_lon')!)
       })
     }
-  }, [searchParams])
+  }, [searchParams, userLocation])
 
   const styleMap: React.CSSProperties | undefined = {
     height: '90vh',
@@ -99,7 +99,7 @@ function MapScreen() {
         userLocation={userLocation}
         routing={routingData}
       />
-      <Instruction routingData={routingData}/>
+      {routingData && <Instruction routingData={routingData}/>}
     </div>
   )
 }
