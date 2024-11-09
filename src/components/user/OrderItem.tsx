@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { currencyFormat } from "../../utils/helper";
-import { BaseLinkGreen } from "../../styles/button";
+import { currencyFormat, VNDFormating } from "../../utils/helper";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
+import { BookingType, OrderType } from "../../utils/commonType";
+import React from "react";
+import { staticImages } from "../../utils/images";
 
 const OrderItemWrapper = styled.div`
   margin: 30px 0;
@@ -90,29 +92,27 @@ const OrderItemWrapper = styled.div`
   }
 `;
 
-const OrderItem = ({ order }) => {
+type Props = {
+  booking?: BookingType
+}
+
+const OrderItem: React.FC<Props> = ({ booking }) => {
   return (
     <OrderItemWrapper>
       <div className="order-item-details">
-        <h3 className="text-x order-item-title">Order no: {order.order_no}</h3>
+        <h3 className="text-x order-item-title">Order no: {booking?.id}</h3>
         <div className="order-info-group flex flex-wrap">
           <div className="order-info-item">
-            <span className="text-gray font-semibold">Order Date:</span>
-            <span className="text-silver">{order.order_date}</span>
+            <span className="text-gray font-semibold">Booking Date:</span>
+            <span className="text-silver">{booking?.date}</span>
+          </div>
+          <div className="order-info-item">
+            <span className="text-gray font-semibold">Time zone: </span>
+            <span className="text-silver">{`${booking?.startTime} - ${booking?.endTime}`}</span>
           </div>
           <div className="order-info-item">
             <span className="text-gray font-semibold">Order Status:</span>
-            <span className="text-silver">{order.status}</span>
-          </div>
-          <div className="order-info-item">
-            <span className="text-gray font-semibold">
-              Estimated Delivery Date:
-            </span>
-            <span className="text-silver">{order.delivery_date}</span>
-          </div>
-          <div className="order-info-item">
-            <span className="text-gray font-semibold">Method:</span>
-            <span className="text-silver">{order.payment_method}</span>
+            <span className="text-silver">{"PENDING"}</span>
           </div>
         </div>
       </div>
@@ -120,32 +120,23 @@ const OrderItem = ({ order }) => {
         <div className="order-overview-content grid">
           <div className="order-overview-img">
             <img
-              src={order.items[0].imgSource}
+              src={booking?.turfImages || staticImages.ground_football}
               alt=""
               className="object-fit-cover"
             />
           </div>
           <div className="order-overview-info">
-            <h4 className="text-xl">{order.items[0].name}</h4>
+            <h4 className="text-xl">{booking?.turfName}</h4>
             <ul>
-              <li className="font-semibold text-base">
-                <span>Colour:</span>
-                <span className="text-silver">{order.items[0].color}</span>
-              </li>
-              <li className="font-semibold text-base">
-                <span>Qty:</span>
-                <span className="text-silver">{order.items[0].quantity}</span>
-              </li>
               <li className="font-semibold text-base">
                 <span>Total:</span>
                 <span className="text-silver">
-                  {currencyFormat(order.items[0].price)}
+                  {VNDFormating(booking?.price)}
                 </span>
               </li>
             </ul>
           </div>
         </div>
-        <BaseLinkGreen to="/order_detail">View Detail</BaseLinkGreen>
       </div>
     </OrderItemWrapper>
   );

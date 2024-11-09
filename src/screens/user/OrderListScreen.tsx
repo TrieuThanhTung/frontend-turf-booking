@@ -4,8 +4,12 @@ import { UserContent, UserDashboardWrapper } from "../../styles/user";
 import UserMenu from "../../components/user/UserMenu";
 import Title from "../../components/common/Title";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
-import { orderData } from "../../data/data";
+import { dataBookings, orderData } from "../../data/data";
 import OrderItemList from "../../components/user/OrderItemList";
+import { useEffect, useState } from "react";
+import { BookingsType } from "../../utils/commonType";
+import TurfApi from "../../api/TurfApi";
+import { Pagination } from "@mui/material";
 
 const OrderListScreenWrapper = styled.div`
   .order-tabs-contents {
@@ -31,6 +35,24 @@ const OrderListScreenWrapper = styled.div`
 `;
 
 const OrderListScreen = () => {
+  const [bookingsPage, setBookingsPage] = useState<BookingsType>(dataBookings)
+
+  const getBookingsPage = async (page?: string | number, status?: string) => {
+
+    try {
+      const res = await TurfApi.getBookings(page, status);
+      if (res.status === 200) {
+        setBookingsPage(res.data.data);
+      }
+    } catch (error) {
+      console.error("Error fetching account data:", error);
+    }
+  }
+
+  useEffect(() => {
+    getBookingsPage()
+  }, [])
+
   return (
     <OrderListScreenWrapper className="page-py-spacing">
       <Container>
@@ -49,7 +71,7 @@ const OrderListScreen = () => {
                 </button>
                 <button
                   type="button"
-                  className="order-tabs-head text-xl italic"
+                  className="order-tabs-head text-xl italic "
                   data-id="cancelled"
                 >
                   Cancelled
@@ -65,13 +87,10 @@ const OrderListScreen = () => {
 
               <div className="order-tabs-contents">
                 <div className="order-tabs-content" id="active">
-                    <OrderItemList orders = {orderData} />
-                </div>
-                <div className="order-tabs-content" id="cancelled">
-                    Cancelled content
-                </div>
-                <div className="order-tabs-content" id="completed">
-                    Completed content
+                    <OrderItemList orders = {orderData} bookings={bookingsPage}/>
+                    <div style={{display: 'flex', justifyContent: 'center'}}>
+                      <Pagination count={bookingsPage.totalPages} page={bookingsPage.currentPage}  variant="outlined" shape="rounded" />
+                    </div>
                 </div>
               </div>
             </div>

@@ -1,14 +1,15 @@
-import { OrderType } from "../../utils/commonType";
+import { BookingsType, OrderType } from "../../utils/commonType";
 import OrderItem from "./OrderItem";
 
 type Props = {
-  orders: OrderType[],
+  orders?: OrderType[],
+  bookings: BookingsType
 }
-const OrderItemList: React.FC<Props> = ({ orders }) => {
+const OrderItemList: React.FC<Props> = ({ bookings }) => {
   return (
     <div>
-      {orders?.map((order) => (
-        <OrderItem key={order.id} order={order} />
+      {bookings.bookings?.map((booking) => (
+        <OrderItem key={booking.id} booking={booking}/>
       ))}
     </div>
   );

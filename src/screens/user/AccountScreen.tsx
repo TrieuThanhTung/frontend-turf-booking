@@ -4,8 +4,6 @@ import { UserContent, UserDashboardWrapper } from "../../styles/user";
 import UserMenu from "../../components/user/UserMenu";
 import Title from "../../components/common/Title";
 import { FormElement, Input } from "../../styles/form";
-import { BaseLinkGreen } from "../../styles/button";
-import { Link } from "react-router-dom";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import { useEffect, useState } from "react";
 import { ProfileType } from "../../utils/commonType";

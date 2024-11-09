@@ -1,4 +1,4 @@
-import { dataProfile, orderData } from "../data/data";
+import { booking, dataBookings, dataProfile, orderData } from "../data/data";
 
 export type ProductType = {
   id: number;
@@ -46,3 +46,5 @@ export interface Price {
 
 export type OrderType = typeof orderData[0]
 export type ProfileType = typeof dataProfile
+export type BookingsType = typeof dataBookings
+export type BookingType = typeof booking
