@@ -92,24 +92,6 @@ const UserMenu = () => {
           </li>
           <li className="nav-menu-item">
             <Link
-              to="/wishlist"
-              className={`nav-menu-link flex items-center ${
-                location.pathname === "/wishlist" ||
-                location.pathname === "/empty_wishlist"
-                  ? "active"
-                  : ""
-              }`}
-            >
-              <span className="nav-link-icon flex items-center justify-center">
-                <img src="./assets/icons/ac_heart.svg" alt="" />
-              </span>
-              <span className="text-base font-semibold nav-link-text no-wrap">
-                Wishlist
-              </span>
-            </Link>
-          </li>
-          <li className="nav-menu-item">
-            <Link
               to="/account"
               className={`nav-menu-link flex items-center ${
                 location.pathname === "/account" ||

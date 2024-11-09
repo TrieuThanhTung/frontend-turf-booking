@@ -810,7 +810,21 @@ const socialLinksData = [
   },
 ];
 
+const dataProfile = {
+  "id": 3,
+  "email": "owner@turf.com",
+  "firstName": "Mr",
+  "lastName": "Owner",
+  "phone": null,
+  "role": "TURF_OWNER",
+  "enabled": true,
+  "avatar": null,
+  "createdAt": "01:01 10/16/2024",
+  "updatedAt": "01:01 10/16/2024"
+}
+
 export {
+  dataProfile,
   products,
   cartItems,
   sideMenuData,

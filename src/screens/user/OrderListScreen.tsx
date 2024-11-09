@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Container } from "../../styles/styles";
-import Breadcrumb from "../../components/common/Breadcrumb";
 import { UserContent, UserDashboardWrapper } from "../../styles/user";
 import UserMenu from "../../components/user/UserMenu";
 import Title from "../../components/common/Title";
@@ -31,16 +30,10 @@ const OrderListScreenWrapper = styled.div`
   }
 `;
 
-const breadcrumbItems = [
-  { label: "Home", link: "/" },
-  { label: "Order", link: "/order" },
-];
-
 const OrderListScreen = () => {
   return (
     <OrderListScreenWrapper className="page-py-spacing">
       <Container>
-        <Breadcrumb items={breadcrumbItems} />
         <UserDashboardWrapper>
           <UserMenu />
           <UserContent>

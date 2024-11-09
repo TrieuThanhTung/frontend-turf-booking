@@ -7,6 +7,9 @@ import { FormElement, Input } from "../../styles/form";
 import { BaseLinkGreen } from "../../styles/button";
 import { Link } from "react-router-dom";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
+import { useEffect, useState } from "react";
+import { ProfileType } from "../../utils/commonType";
+import TurfApi from "../../api/TurfApi";
 
 const AccountScreenWrapper = styled.main`
   .address-list {
@@ -49,6 +52,23 @@ const AccountScreenWrapper = styled.main`
 `;
 
 const AccountScreen = () => {
+  const [accountData, setAccountData] = useState<ProfileType>()
+
+  const getDataAccount = async () => {
+    try {
+      const res = await TurfApi.getUserProfile();
+      if (res.status === 200) {
+        setAccountData(res.data.data);
+      }
+    } catch (error) {
+      console.error("Error fetching account data:", error);
+    }
+  }
+
+  useEffect(() => {
+    getDataAccount()
+  }, [])
+
   return (
     <AccountScreenWrapper className="page-py-spacing">
       <Container>
@@ -70,7 +90,7 @@ const AccountScreen = () => {
                     <Input
                       type="text"
                       className="form-elem-control text-outerspace font-semibold"
-                      value="Richard Doe"
+                      value={`${accountData?.firstName} ${accountData?.lastName}` }
                       readOnly
                     />
                     <button type="button" className="form-control-change-btn">
@@ -89,7 +109,7 @@ const AccountScreen = () => {
                     <Input
                       type="email"
                       className="form-elem-control text-outerspace font-semibold"
-                      value="richard@gmail.com"
+                      value={accountData?.email}
                       readOnly
                     />
                     <button type="button" className="form-control-change-btn">
@@ -108,7 +128,7 @@ const AccountScreen = () => {
                     <Input
                       type="text"
                       className="form-elem-control text-outerspace font-semibold"
-                      value="+9686 6864 3434"
+                      value={accountData?.phone || "Please enter a phone number"}
                       readOnly
                     />
                     <button type="button" className="form-control-change-btn">
@@ -137,75 +157,6 @@ const AccountScreen = () => {
                 </FormElement>
               </div>
             </form>
-            <div>
-              <h4 className="title-sm">My Contact Addresss</h4>
-              <BaseLinkGreen to="/account/add">Add Address</BaseLinkGreen>
-              <div className="address-list grid">
-                <div className="address-item grid">
-                  <p className="text-outerspace text-lg font-semibold address-title">
-                    Richard Doe
-                  </p>
-                  <p className="text-gray text-base font-medium address-description">
-                    1/4 Watson Street Flat, East Coastal Road, Ohio City
-                  </p>
-                  <ul className="address-tags flex flex-wrap">
-                    <li className="text-gray text-base font-medium inline-flex items-center justify-center">
-                      Home
-                    </li>
-                    <li className="text-gray text-base font-medium inline-flex items-center justify-center">
-                      Default billing address
-                    </li>
-                  </ul>
-                  <div className="address-btns flex">
-                    <Link
-                      to="/"
-                      className="text-base text-outerspace font-semibold"
-                    >
-                      Remove
-                    </Link>
-                    <div className="btn-separator"></div>
-                    <Link
-                      to="/"
-                      className="text-base text-outerspace font-semibold"
-                    >
-                      Edit
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="address-item grid">
-                  <p className="text-outerspace text-lg font-semibold address-title">
-                    Richard Doe
-                  </p>
-                  <p className="text-gray text-base font-medium address-description">
-                    1/4 Watson Street Flat, East Coastal Road, Ohio City
-                  </p>
-                  <ul className="address-tags flex flex-wrap">
-                    <li className="text-gray text-base font-medium inline-flex items-center justify-center">
-                      Home
-                    </li>
-                    <li className="text-gray text-base font-medium inline-flex items-center justify-center">
-                      Default billing address
-                    </li>
-                  </ul>
-                  <div className="address-btns flex">
-                    <Link
-                      to="/"
-                      className="text-base text-outerspace font-semibold"
-                    >
-                      Remove
-                    </Link>
-                    <div className="btn-separator"></div>
-                    <Link
-                      to="/"
-                      className="text-base text-outerspace font-semibold"
-                    >
-                      Edit
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
           </UserContent>
         </UserDashboardWrapper>
       </Container>

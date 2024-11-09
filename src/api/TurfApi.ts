@@ -28,6 +28,10 @@ class TurfApi {
   }) => {
     return await axiosToken.post("/api/bookings", data);
   }
+
+  public getUserProfile = async () => {
+    return await axiosToken.get("/api/users");
+  }
 } 
 
 export default new TurfApi();

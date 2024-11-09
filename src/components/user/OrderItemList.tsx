@@ -1,7 +1,10 @@
+import { OrderType } from "../../utils/commonType";
 import OrderItem from "./OrderItem";
-import PropTypes from "prop-types";
 
-const OrderItemList = ({ orders }) => {
+type Props = {
+  orders: OrderType[],
+}
+const OrderItemList: React.FC<Props> = ({ orders }) => {
   return (
     <div>
       {orders?.map((order) => (
@@ -12,7 +15,3 @@ const OrderItemList = ({ orders }) => {
 };
 
 export default OrderItemList;
-
-OrderItemList.propTypes = {
-  orders: PropTypes.array,
-};

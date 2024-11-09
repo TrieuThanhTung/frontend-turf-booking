@@ -14,6 +14,7 @@ import ProductDetails from "./screens/product/ProductDetailsScreen";
 import MapScreen from "./screens/map/MapScreen";
 import ConfirmScreen from "./screens/user/ConfirmScreen";
 import Account from "./screens/user/AccountScreen";
+import Order from "./screens/user/OrderListScreen";
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
             <Route path="/map" element={<MapScreen />} />
             <Route path="/confirm" element={<ConfirmScreen />} />
             <Route path="/account" element={<Account />} />
+            <Route path="/order" element={<Order />} />
           </Route>
           <Route path="/" element={<AuthLayout />}>
             <Route path="sign_up" element={<SignUp />} />

@@ -1,3 +1,5 @@
+import { dataProfile, orderData } from "../data/data";
+
 export type ProductType = {
   id: number;
   imgSource: string;
@@ -40,3 +42,7 @@ export interface Price {
   createdAt: string; // Assuming format remains the same
   updatedAt: string; // Assuming format remains the same
 }
+
+
+export type OrderType = typeof orderData[0]
+export type ProfileType = typeof dataProfile
