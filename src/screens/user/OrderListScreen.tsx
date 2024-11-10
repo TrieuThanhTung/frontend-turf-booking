@@ -64,6 +64,14 @@ const OrderListScreen = () => {
     navigate(`?${urlParams.toString()}`)
   }
 
+  const handleChangeStatus = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const urlParams = new URLSearchParams(searchParams)
+    urlParams.set('status', e.currentTarget.value)
+    urlParams.set('page', "1")
+    console.log(urlParams.toString())
+    navigate(`?${urlParams.toString()}`)
+  }
+
 
   return (
     <OrderListScreenWrapper className="page-py-spacing">
@@ -76,24 +84,30 @@ const OrderListScreen = () => {
               <div className="order-tabs-heads">
                 <button
                   type="button"
-                  className="order-tabs-head text-xl italic order-tabs-head-active"
+                  className={`order-tabs-head text-xl italic ${(!searchParams.get('status') || searchParams.get('status') === 'PENDING') && "order-tabs-head-active"}`}
                   data-id="active"
+                  value="PENDING"
+                  onClick={handleChangeStatus}
                 >
-                  Active
+                  Chờ thanh toán
                 </button>
                 <button
                   type="button"
-                  className="order-tabs-head text-xl italic "
+                  className={`order-tabs-head text-xl italic ${searchParams.get('status') === 'PAID' && "order-tabs-head-active"}`}
+                  value="PAID"
                   data-id="cancelled"
+                  onClick={handleChangeStatus}
                 >
-                  Cancelled
+                  Đã thanh toán
                 </button>
                 <button
                   type="button"
-                  className="order-tabs-head text-xl italic"
+                  className={`order-tabs-head text-xl italic ${searchParams.get('status') === 'DONE' && "order-tabs-head-active"}`}
+                  value="DONE"
                   data-id="completed"
+                  onClick={handleChangeStatus}
                 >
-                  Completed
+                  Đã hoàn thành
                 </button>
               </div>
 
