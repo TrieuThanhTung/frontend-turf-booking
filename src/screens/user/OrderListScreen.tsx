@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { BookingsType } from "../../utils/commonType";
 import TurfApi from "../../api/TurfApi";
 import { Pagination } from "@mui/material";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const OrderListScreenWrapper = styled.div`
   .order-tabs-contents {
@@ -35,10 +36,12 @@ const OrderListScreenWrapper = styled.div`
 `;
 
 const OrderListScreen = () => {
+  const [searchParams] = useSearchParams()
+  const navigate = useNavigate()
+
   const [bookingsPage, setBookingsPage] = useState<BookingsType>(dataBookings)
 
   const getBookingsPage = async (page?: string | number, status?: string) => {
-
     try {
       const res = await TurfApi.getBookings(page, status);
       if (res.status === 200) {
@@ -50,8 +53,17 @@ const OrderListScreen = () => {
   }
 
   useEffect(() => {
-    getBookingsPage()
-  }, [])
+    const page = searchParams.get('page') || undefined;
+    const status = searchParams.get('status') || undefined;
+    getBookingsPage(page, status)
+  }, [searchParams])
+
+  const handleChangPage = async (_event: React.ChangeEvent<unknown>, page: number) => {
+    const urlParams = new URLSearchParams(searchParams)
+    urlParams.set('page', page.toString())
+    navigate(`?${urlParams.toString()}`)
+  }
+
 
   return (
     <OrderListScreenWrapper className="page-py-spacing">
@@ -89,7 +101,7 @@ const OrderListScreen = () => {
                 <div className="order-tabs-content" id="active">
                     <OrderItemList orders = {orderData} bookings={bookingsPage}/>
                     <div style={{display: 'flex', justifyContent: 'center'}}>
-                      <Pagination count={bookingsPage.totalPages} page={bookingsPage.currentPage}  variant="outlined" shape="rounded" />
+                      <Pagination count={bookingsPage.totalPages} page={bookingsPage.currentPage} onChange={handleChangPage} variant="outlined" shape="rounded" />
                     </div>
                 </div>
               </div>
