@@ -64,39 +64,21 @@ const sideMenuData = [
 const bannerData = [
   {
     id: "banner-1",
-    topText: "T-shirt / Tops",
-    titleText: "Summer Value Pack",
-    bottomText: "cool / colorful / comfy",
+    topText: "",
+    titleText: "",
+    bottomText: "",
     buttonLink: "/",
-    buttonText: "Shop Now",
-    imgSource: staticImages.hero_img1,
+    buttonText: "Đặt sân",
+    imgSource: staticImages.hero_fooball_1
   },
   {
     id: "banner-2",
-    topText: "Quality / Branded",
-    titleText: "Season Of Offers",
-    bottomText: "offers / heavy discount / coupons",
+    topText: "",
+    titleText: "",
+    bottomText: "",
     buttonLink: "/",
-    buttonText: "Shop Now",
-    imgSource: staticImages.hero_img2,
-  },
-  {
-    id: "banner-3",
-    topText: "Seasonal Attire / Collection",
-    titleText: "New Arrivals & Special",
-    bottomText: "stylish / trendy",
-    buttonLink: "/",
-    buttonText: "Shop Now",
-    imgSource: staticImages.hero_img3,
-  },
-  {
-    id: "banner-4",
-    topText: "Party & Wedding Dress",
-    titleText: "Fashionable Choice for Occasion",
-    bottomText: "offers / discounts / coupons",
-    buttonLink: "/",
-    buttonText: "Shop Now",
-    imgSource: staticImages.hero_img4,
+    buttonText: "Đặt sân",
+    imgSource: staticImages.hero_fooball_2
   },
 ];
 
@@ -205,7 +187,7 @@ const savingZoneData = [
 const products = [
   {
     id: 1,
-    imgSource: staticImages.product1,
+    imgSource: "https://img.thegioithethao.vn/thumbs/san-bong-da/da-nang/ngu-hanh-son/san-bong-da-kaka-sport-khu-do-thi-hoa-quy/san-bong-sport-khu-do-thi-hoa-quy-1_thumb_720.webp",
     title: "Active wear",
     brand: "Jhanvi’s Brand",
     price: 123.0,
@@ -375,7 +357,7 @@ const feedbackData = [
     designation: "Marketing Manger",
     rating: 3,
     feedbackText:
-      "I am incredibly pleased with my recent shopping experience on this clothing ecommerce website. The user-friendly interface made it a breeze to browse through a wide range of stylish options. The variety of sizes and styles available was impressive, and I found the perfect outfit for a special occasion. ",
+      "Sân bóng rất đẹp, mặt sân cỏ nhân tạo êm chân. Tuy nhiên, hệ thống chiếu sáng hơi yếu, đặc biệt ở góc sân. Nhân viên phục vụ rất nhiệt tình, hỗ trợ đặt sân nhanh chóng. Tôi rất hài lòng với trải nghiệm tại đây",
   },
   {
     id: "feedback-2",
@@ -384,7 +366,7 @@ const feedbackData = [
     designation: "Teacher",
     rating: 4,
     feedbackText:
-      "This clothing ecommerce website has become my go-to destination for fashion finds. The selection is fantastic, catering to various tastes and preferences. From casual wear to elegant pieces, I always discover something unique and stylish. The website's organization and clear product images make it easy to make informed choices. ",
+      "Mặt sân rất phẳng và có cỏ nhân tạo mềm, giúp di chuyển dễ dàng và giảm nguy cơ trượt ngã. Đặc biệt, sân còn thoát nước rất nhanh sau mưa",
   },
   {
     id: "feedback-3",
@@ -393,7 +375,7 @@ const feedbackData = [
     designation: "Student",
     rating: 4,
     feedbackText:
-      "I want to express my gratitude for the exceptional service provided by this clothing ecommerce website. Not only is the website intuitive and easy to navigate, but the customer service team also went above and beyond to assist me with a query. ",
+      "Đèn ở đây khá sáng, nhưng tập trung nhiều ở trung tâm sân và hơi thiếu ở hai biên. Có thể gặp khó khăn trong việc quan sát ở biên.",
   },
   {
     id: "feedback-4",
@@ -402,7 +384,7 @@ const feedbackData = [
     designation: "Fashion Designer",
     rating: 4,
     feedbackText:
-      "I recently made a purchase from this clothing ecommerce website, and I couldn't be happier with my experience. The website is well-designed, making it easy to navigate and find the items I was looking for. The product descriptions were detailed, helping me make informed decisions.",
+      "Đèn hơi yếu và không đủ sáng cho các trận đấu muộn. Một số bóng đèn còn bị nhấp nháy nên cần phải thay mới."
   },
 ];
 
@@ -597,22 +579,31 @@ const servicesData = [
   {
     id: "service_1",
     icon: staticImages.card_icon,
-    text: "Secure Payment",
+    text: "Wifi",
   },
   {
     id: "service_2",
-    icon: staticImages.size_icon,
-    text: "Size & fit",
+    icon: staticImages.card_icon,
+    text: "Trà đá",
   },
   {
     id: "service_3",
-    icon: staticImages.shipping_icon,
-    text: "Free Shipping",
+    icon: staticImages.card_icon,
+    text: "Nước uống",
   },
   {
     id: "service_4",
-    icon: staticImages.return_icon,
-    text: "Free Shipping & Returns",
+    icon: staticImages.shipping_icon,
+    text: "Bãi đỗ xe máy & oto",
+  },
+  {
+    id: "service_5",
+    icon: staticImages.card_icon,
+    text: "Căng tin"
+  },{
+    id: "service_6",
+    icon: staticImages.card_icon,
+    text: "Đồ ăn",
   },
 ];
 
@@ -660,15 +651,8 @@ const productDescriptionTabHeads = [
     id: "tab-comments",
     tabHead: "tabComments",
     tabText: "User Comments",
-    badgeValue: 10,
-    badgeColor: "purple",
-  },
-  {
-    id: "tab-QNA",
-    tabHead: "tabQNA",
-    tabText: "Question & Answer",
-    badgeValue: 4,
-    badgeColor: "outerspace",
+    badgeValue: null,
+    badgeColor: "",
   },
 ];
 
@@ -826,7 +810,43 @@ const socialLinksData = [
   },
 ];
 
+const dataProfile = {
+  "id": 3,
+  "email": "owner@turf.com",
+  "firstName": "Mr",
+  "lastName": "Owner",
+  "phone": null,
+  "role": "TURF_OWNER",
+  "enabled": true,
+  "avatar": null,
+  "createdAt": "01:01 10/16/2024",
+  "updatedAt": "01:01 10/16/2024"
+}
+
+const booking = {
+  "id": 2,
+  "turfName": "Sân bóng đá Phi Liêng",
+  "turfAddress": "QL27, Xã Đạ K' Nàng, Huyện Đam Rông, Lâm Đồng",
+  "turfImages": null,
+  "startTime": "16:00",
+  "endTime": "17:30",
+  "date": "11/27/2024",
+  "price": 800000.0,
+  "createdAt": "11:20 11/01/2024"
+}
+
+const dataBookings = {
+  "bookings": [
+      booking
+  ],
+  "currentPage": 1,
+  "totalPages": 1
+}
+
 export {
+  booking,
+  dataBookings,
+  dataProfile,
   products,
   cartItems,
   sideMenuData,

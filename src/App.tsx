@@ -1,5 +1,6 @@
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
 
 import AuthLayout from "./components/layout/AuthLayout";
 import BaseLayout from "./components/layout/BaseLayout";
@@ -9,8 +10,16 @@ import SignUp from "./screens/auth/SignUpScreen";
 import SignIn from "./screens/auth/SignInScreen";
 
 import Home from "./screens/home/HomeScreen";
+import ProductDetails from "./screens/product/ProductDetailsScreen";
+import MapScreen from "./screens/map/MapScreen";
+import ConfirmScreen from "./screens/user/ConfirmScreen";
+import Account from "./screens/user/AccountScreen";
+import Order from "./screens/user/OrderListScreen";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
+  const { isLoggedIn } = useContext(AuthContext);
 
   return (
     <>
@@ -19,9 +28,12 @@ function App() {
         <Routes>
           <Route path="/" element={<BaseLayout />}>
             <Route index element={<Home />} />
+            <Route path="/turf/:id" element={<ProductDetails />} />
+            <Route path="/map" element={<MapScreen />} />
+            <Route path="/confirm" element={<ConfirmScreen />} />
+            <Route path="/account" element={isLoggedIn ? <Account /> : <Navigate to="/sign_in" />} />
+            <Route path="/order" element={isLoggedIn ? <Order /> : <Navigate to="/sign_in" />} />
           </Route>
-
-          {/* auth screens */}
           <Route path="/" element={<AuthLayout />}>
             <Route path="sign_up" element={<SignUp />} />
             <Route path="sign_in" element={<SignIn />} />

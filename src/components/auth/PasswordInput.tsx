@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FormElement, Input } from "../../styles/form";
 import { useState } from "react";
+import React from "react";
 
 const PasswordToggleButton = styled.button`
   position: absolute;
@@ -16,6 +17,7 @@ type PasswordInputType = {
   fieldName: string;
   name: string;
   errorMsg?: string;
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
 };
 
 
@@ -23,6 +25,7 @@ const PasswordInput: React.FC<PasswordInputType> = ({
   fieldName,
   name,
   errorMsg = "",
+  setPassword,
 }) => {
 
   const [showPassword, setShowPassword] = useState(false);
@@ -42,6 +45,7 @@ const PasswordInput: React.FC<PasswordInputType> = ({
           placeholder=""
           name={name}
           className="form-elem-control"
+          onChange={e => setPassword(e.target.value)}
         />
 
         <PasswordToggleButton
