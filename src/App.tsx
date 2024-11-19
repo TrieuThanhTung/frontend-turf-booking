@@ -19,7 +19,7 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 
 function App() {
-  const { isLoggedIn, isLoading, isAdminLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
 
   return (
     <>

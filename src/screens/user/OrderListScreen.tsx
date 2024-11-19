@@ -95,7 +95,6 @@ const OrderListScreen = () => {
                   type="button"
                   className={`order-tabs-head text-xl italic ${searchParams.get('status') === 'PAID' && "order-tabs-head-active"}`}
                   value="PAID"
-                  data-id="cancelled"
                   onClick={handleChangeStatus}
                 >
                   Đã thanh toán
@@ -104,10 +103,17 @@ const OrderListScreen = () => {
                   type="button"
                   className={`order-tabs-head text-xl italic ${searchParams.get('status') === 'DONE' && "order-tabs-head-active"}`}
                   value="DONE"
-                  data-id="completed"
                   onClick={handleChangeStatus}
                 >
                   Đã hoàn thành
+                </button>
+                <button
+                  type="button"
+                  className={`order-tabs-head text-xl italic ${searchParams.get('status') === 'CANCELLED' && "order-tabs-head-active"}`}
+                  value="CANCELLED"
+                  onClick={handleChangeStatus}
+                >
+                  Đã hủy
                 </button>
               </div>
 

@@ -2,6 +2,8 @@ import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Title from "../common/Title";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const NavMenuWrapper = styled.nav`
   margin-top: 32px;
@@ -65,9 +67,12 @@ const NavMenuWrapper = styled.nav`
 
 const UserMenu = () => {
   const location = useLocation();
+  const { setIsLoggedIn } = useContext(AuthContext);
+
 
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
+    setIsLoggedIn(false);
   }
   return (
     <div>

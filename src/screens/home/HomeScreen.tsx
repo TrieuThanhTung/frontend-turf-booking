@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import Pagination from '@mui/material/Pagination';
 import { useNavigate, useSearchParams } from "react-router-dom";
 
+
 const HomeScreenWrapper = styled.main``;
 
 const HomeScreen = () => {
@@ -28,7 +29,7 @@ const HomeScreen = () => {
         })
       }
       console.log("data", response.data)
-    } catch (error) { 
+    } catch (error) {
       console.log(error);
     }
   }
@@ -56,8 +57,8 @@ const HomeScreen = () => {
   return (
     <HomeScreenWrapper>
       <Hero />
-      <Catalog catalogTitle={"Sân bóng"} products={mensCatalog} turfs={data}/>
-      <div style={{display: 'flex', justifyContent: 'center'}}>
+      <Catalog catalogTitle={"Sân bóng"} products={mensCatalog} turfs={data} />
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Pagination count={page.total} page={page.current} onChange={handleChange} variant="outlined" shape="rounded" />
       </div>
       <Feedback />
