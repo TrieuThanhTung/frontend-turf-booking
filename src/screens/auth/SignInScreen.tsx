@@ -8,9 +8,10 @@ import PasswordInput from "../../components/auth/PasswordInput";
 import { Link, useNavigate } from "react-router-dom";
 import { BaseButtonBlack } from "../../styles/button";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import TurfApi from "../../api/TurfApi";
 import { ToastContainer, toast } from 'react-toastify';
+import { AuthContext } from "../../context/AuthContext";
 
 const SignInScreenWrapper = styled.section`
   .form-separator {
@@ -44,6 +45,7 @@ const SignInScreenWrapper = styled.section`
 
 const SignInScreen = () => {
   const navigate = useNavigate()  // eslint-disable-line react-hooks/rules-of-hooks
+  const { setIsLoggedIn } = useContext(AuthContext);
 
   const [email, setEmail] = useState('')
 
@@ -59,6 +61,7 @@ const SignInScreen = () => {
       })
       if (res.status === 200) {
         localStorage.setItem('accessToken', res.data.data.accessToken)
+        setIsLoggedIn(true)
         navigate('/')
       } else {
         toast.error(res.data.message)
