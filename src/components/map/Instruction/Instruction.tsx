@@ -5,18 +5,40 @@ import TurnLeftIcon from '@mui/icons-material/TurnLeft';
 import TurnRightIcon from '@mui/icons-material/TurnRight';
 import PlaceIcon from '@mui/icons-material/Place';
 import { RoutingType } from '../data/Util';
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
+import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 
 type Props = {
-  routingData?: RoutingType
+  routingData?: RoutingType,
+  profileVehicle?: string
+  setProfileVehicle?: React.Dispatch<React.SetStateAction<string>>
 }
 
-const Instruction:React.FC<Props> = ({routingData}) => {
+const Instruction:React.FC<Props> = ({routingData, profileVehicle, setProfileVehicle}) => {
 
   return (
     <div className='instruction-container'>
       <div className='instruction-header' style={{height: '50px'}}>
         <h2>Hướng dẫn </h2>
       </div>
+      <div className='instruction-profile'>
+          <button className={`profile-btn ${profileVehicle === 'car' && 'active'}`}
+            onClick={() => setProfileVehicle!("car")}
+          >
+            <DirectionsCarIcon sx={{fontSize: '24px'}} />
+          </button>
+          <button className={`profile-btn ${profileVehicle === 'bike' && 'active'}`}
+            onClick={() => setProfileVehicle!("bike")}
+          >
+            <DirectionsBikeIcon sx={{fontSize: '24px'}} />
+          </button>
+          <button className={`profile-btn ${profileVehicle === 'foot' && 'active'}`}
+            onClick={() => setProfileVehicle!("foot")}
+          >
+            <DirectionsWalkIcon sx={{fontSize: '24px'}} />
+          </button>
+        </div>
       {routingData ? <div className=''>
         <div className='overview'>
           <h3 className='time'>{(routingData?.paths[0].time / 60000).toFixed(1)} phút</h3>
@@ -32,7 +54,7 @@ const Instruction:React.FC<Props> = ({routingData}) => {
                   </div>
                   <div className='instruction-content'>
                     <h4>{route.text}</h4>
-                    <p>20m</p>
+                    <p>{route.distance.toFixed(0)} m</p>
                   </div>
                 </li>
               )  
@@ -44,7 +66,7 @@ const Instruction:React.FC<Props> = ({routingData}) => {
                   </div>
                   <div className='instruction-content'>
                     <h4>{route.text}</h4>
-                    <p>20m</p>
+                    <p>{route.distance.toFixed(0)} m</p>
                   </div>
                 </li>
               )  
@@ -58,7 +80,7 @@ const Instruction:React.FC<Props> = ({routingData}) => {
                   </div>
                   <div className='instruction-content'>
                     <h4>{route.text}</h4>
-                    <p>20m</p>
+                    <p>{route.distance.toFixed(0)} m</p>
                   </div>
                 </li>
               )  

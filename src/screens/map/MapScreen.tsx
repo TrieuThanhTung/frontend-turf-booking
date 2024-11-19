@@ -14,6 +14,8 @@ function MapScreen() {
 
   const [turfLocation, setTurfLocation] = useState<LocationType>()
 
+  const [profileVehicle, setProfileVehicle] = useState('car')
+
   const [centerLocation, setCenterLocation] = useState<LocationType>({
     lat: 21.0245,
     lon: 105.84117
@@ -52,7 +54,7 @@ function MapScreen() {
             turfLocation?.lat
           ]
         ],
-        "profile": "car",
+        "profile": profileVehicle || 'car',
         "instructions": true,
         "locale": "vi_VN",
         "points_encoded": false,
@@ -73,7 +75,7 @@ function MapScreen() {
 
   useEffect(() => {
     fetchRoutingData();
-  }, [userLocation, turfLocation])
+  }, [userLocation, turfLocation, profileVehicle])
 
   useEffect(() => {
     if (searchParams.get('turf_lat') !== null && searchParams.get('turf_lon') !== null) {
@@ -99,7 +101,7 @@ function MapScreen() {
         userLocation={userLocation}
         routing={routingData}
       />
-      {routingData && <Instruction routingData={routingData}/>}
+      {routingData && <Instruction routingData={routingData} setProfileVehicle={setProfileVehicle} profileVehicle={profileVehicle}/>}
     </div>
   )
 }

@@ -47,3 +47,25 @@
 .bottom {
   height: 30px;
 }
+
+.instruction-profile {
+  display: flex;
+  margin: 8px 0 16px 0;
+}
+
+.profile-btn {
+  background-color: #d9dae7aa;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin: 0 8px;
+}
+
+.profile-btn.active {
+  background-color: #7ad005;
+}
+
+.profile-btn:hover {
+  background-color: #dadbe9
+}
