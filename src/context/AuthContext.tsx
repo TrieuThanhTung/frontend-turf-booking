@@ -39,7 +39,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const token = localStorage.getItem("accessToken");
     if (!token) return;
     const decode: { email: string, role: string } = jwtDecode(token)
-    if (decode && decode?.role === 'ADMIN') {
+    if (decode && decode?.role === 'TURF_OWNER') {
       setAdminLoggedIn(true)
     }
   }, [])
