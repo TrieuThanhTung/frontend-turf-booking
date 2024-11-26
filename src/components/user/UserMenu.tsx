@@ -77,7 +77,7 @@ const UserMenu = () => {
   }
   return (
     <div>
-      <Title titleText={"Hello Richard"} />
+      <Title titleText={"Hello"} />
       <p className="text-base font-light italic">Welcome to your account.</p>
 
       <NavMenuWrapper>

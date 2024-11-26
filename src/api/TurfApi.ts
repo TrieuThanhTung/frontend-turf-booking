@@ -49,6 +49,11 @@ class TurfApi {
     if (!query) return;
     return await axiosNonToken.get(`/api/turfs/search?query=${query}`);
   }
+
+  public createTurf = async (data: unknown) => {
+    if(!data) return;
+    return await axiosToken.post("/api/turfs", data);
+  }
 } 
 
 export default new TurfApi();

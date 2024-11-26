@@ -117,7 +117,7 @@ const TurfItem: React.FC<Props> = ({ turf }) => {
         <div className="order-info-group flex flex-wrap">
           <div className="order-info-item">
             <span className="text-gray font-semibold">Price zone: </span>
-            <span className="text-silver">{`${VNDFormating(turf.prices[0].price)} - ${VNDFormating(turf.prices[8].price)}`}</span>
+            <span className="text-silver">{`${VNDFormating(turf.prices[0].price)} - ${VNDFormating(turf.prices[turf.prices.length-1].price)}`}</span>
           </div>
           <div className="order-info-item">
             <span className="text-gray font-semibold">Address:</span>
