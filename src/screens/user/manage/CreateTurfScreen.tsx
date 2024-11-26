@@ -45,6 +45,10 @@ const ManageTurfListWrapper = styled.div`
 const CreateNewTurf = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const handleFormSubmit = async (values: typeof initialValues) => {
+    if (priceOption.startTime.isAfter(priceOption.endTime)) {
+      toast.error("End time must be after start time!");
+      return;
+    }
     const data = {
       "name": values?.name,
       "description": values.description,
@@ -54,8 +58,8 @@ const CreateNewTurf = () => {
       "images": [values.image1, values.image2],
       "turfPrices": [
         {
-            "startTime": `${priceOption.startTime.get("hour")}:${priceOption.endTime.get("minute") < 10 ? "0" + priceOption.endTime.get("minute") : priceOption.endTime.get("minute")}:00`,
-            "endTime": `${priceOption.endTime.get("hour")}:${priceOption.endTime.get("minute") < 10 ? "0" + priceOption.endTime.get("minute") : priceOption.endTime.get("minute")}:00`,
+            "startTime": `${priceOption.startTime.get("hour") < 10 ? "0" + priceOption.startTime.get("hour") : priceOption.startTime.get("hour")}:${priceOption.startTime.get("minute") < 10 ? "0" + priceOption.startTime.get("minute") : priceOption.startTime.get("minute")}:00`,
+            "endTime": `${priceOption.endTime.get("hour") < 10 ? "0" + priceOption.endTime.get("hour") : priceOption.endTime.get("hour")}:${priceOption.endTime.get("minute") < 10 ? "0" + priceOption.endTime.get("minute") : priceOption.endTime.get("minute")}:00`,
             "price": Number.parseFloat(priceOption.price)
         }]
     }
@@ -64,6 +68,9 @@ const CreateNewTurf = () => {
       const res = await TurfApi.createTurf(data);
       if (res?.status === 201) {
         toast.success("Turf created successfully!")
+        setTimeout(() => {
+          window.location.reload()
+        }, 2500)
       } else {
         toast.error(`Turf created fail! ${res?.data.message}`)
       }
@@ -81,8 +88,8 @@ const CreateNewTurf = () => {
   };
 
   const [priceOption, setPriceOption] = React.useState({
-    startTime: dayjs('16:44 10/17/2024'),
-    endTime: dayjs('17:30 10/17/2024'),
+    startTime: dayjs('7:00:00 10/17/2024'),
+    endTime: dayjs('7:00:00 10/17/2024'),
     price: "",
   })
 
