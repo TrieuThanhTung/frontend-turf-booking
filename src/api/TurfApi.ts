@@ -54,6 +54,14 @@ class TurfApi {
     if(!data) return;
     return await axiosToken.post("/api/turfs", data);
   }
+
+  public getTurfsByOwner = async (page?: string | number) => {
+    let url = "/api/turfs/owner";
+    if (page) {
+      url = `${url}?page=${page}`
+    }
+    return await axiosToken.get(url);
+  }
 } 
 
 export default new TurfApi();

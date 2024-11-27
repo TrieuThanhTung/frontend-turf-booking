@@ -14,7 +14,6 @@ import React, { useEffect, useState } from "react";
 import TurfApi from "../../../api/TurfApi";
 import { toast, ToastContainer } from "react-toastify";
 import { useParams } from "react-router-dom";
-import { LocationType } from "../../../components/map/data/Util";
 import { TurfField } from "../../../utils/commonType";
 
 
@@ -118,6 +117,7 @@ const EditTurf = () => {
     image2: "",
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [priceOption, setPriceOption] = React.useState({
     startTime: dayjs('7:00:00 10/17/2024'),
     endTime: dayjs('7:00:00 10/17/2024'),

@@ -11,6 +11,7 @@ import { Pagination } from "@mui/material";
 // import { useNavigate, useSearchParams } from "react-router-dom";
 import TurfItem from "../../../components/user/manage/TurfItem";
 import { BaseLinkGreen } from "../../../styles/button";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const ManageTurfListWrapper = styled.div`
   .order-tabs-contents {
@@ -36,6 +37,9 @@ const ManageTurfListWrapper = styled.div`
 `;
 
 const ManageTurfList = () => {
+  window.scrollTo(0, 0);
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const [data, setData] = useState<{
     turfs: TurfField[];
@@ -43,21 +47,33 @@ const ManageTurfList = () => {
     totalPages: number;
   }>();
 
+  
+
   const getTurfs = async (page?: string) => {
     try {
-      const response = await TurfApi.getTurfs(page);
+      const response = await TurfApi.getTurfsByOwner(page);
       if (response.status === 200) {
         setData(response.data.data);
       }
-      console.log("data", response.data)
     } catch (error) {
       console.log(error);
     }
   }
 
   useEffect(() => {
-    getTurfs();
-  }, [])
+    const page = searchParams.get('page') || undefined
+    getTurfs(page);
+  }, [searchParams])
+
+  const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+    setData({
+      ...data!,
+      currentPage: value,
+    })
+    const newUrlParams = new URLSearchParams(searchParams);
+    newUrlParams.set('page', value.toString());
+    navigate(`?${newUrlParams.toString()}`)
+  };
 
   return (
     <ManageTurfListWrapper className="page-py-spacing">
@@ -84,7 +100,7 @@ const ManageTurfList = () => {
                       return <TurfItem turf={turf} key={index}/>
                     })}
                     <div style={{display: 'flex', justifyContent: 'center'}}>
-                      <Pagination count={data?.totalPages} page={data?.currentPage} variant="outlined" shape="rounded" />
+                      <Pagination count={data?.totalPages} page={data?.currentPage} onChange={handleChange} variant="outlined" shape="rounded" />
                     </div>
                 </div>
               </div>
