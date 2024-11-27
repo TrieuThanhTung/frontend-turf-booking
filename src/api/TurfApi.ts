@@ -62,6 +62,12 @@ class TurfApi {
     }
     return await axiosToken.get(url);
   }
+
+  public updateTurfById = async (id?: string, data?: unknown) => {
+    if(!data) return;
+    const url = `/api/turfs/${id}`
+    return await axiosToken.put(url, data);
+  }
 } 
 
 export default new TurfApi();

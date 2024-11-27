@@ -81,23 +81,16 @@ const EditTurf = () => {
       return;
     }
     const data = {
-      "name": values?.name,
-      "description": values.description,
-      "address": values.address,
+      "name": dataTurf.name,
+      "description": dataTurf.description,
+      "address": dataTurf.address,
       "location_lat": 21.0223452,
       "location_lon": 105.7925185,
-      "images": [values.image1, values.image2],
-      "turfPrices": [
-        {
-          "startTime": `${priceOption.startTime.get("hour") < 10 ? "0" + priceOption.startTime.get("hour") : priceOption.startTime.get("hour")}:${priceOption.startTime.get("minute") < 10 ? "0" + priceOption.startTime.get("minute") : priceOption.startTime.get("minute")}:00`,
-          "endTime": `${priceOption.endTime.get("hour") < 10 ? "0" + priceOption.endTime.get("hour") : priceOption.endTime.get("hour")}:${priceOption.endTime.get("minute") < 10 ? "0" + priceOption.endTime.get("minute") : priceOption.endTime.get("minute")}:00`,
-          "price": Number.parseFloat(priceOption.price)
-        }]
     }
     try {
-      const res = await TurfApi.createTurf(data);
-      if (res?.status === 201) {
-        toast.success("Turf created successfully!")
+      const res = await TurfApi.updateTurfById(id, data);
+      if (res?.status === 200) {
+        toast.success("Turf update successfully!")
         setTimeout(() => {
           window.location.reload()
         }, 2500)
@@ -141,7 +134,6 @@ const EditTurf = () => {
                     <Formik
                       onSubmit={handleFormSubmit}
                       initialValues={initialValues}
-                      validationSchema={checkoutSchema}
                     >
                       {({
                         errors,
@@ -165,7 +157,7 @@ const EditTurf = () => {
                               type="text"
                               label="Name"
                               onBlur={handleBlur}
-                              onChange={handleChange}
+                              onChange={(e) => setDataTurf({...dataTurf, name: e.target.value})}
                               value={dataTurf.name}
                               name="name"
                               error={!!touched.name && !!errors.name}
@@ -178,7 +170,7 @@ const EditTurf = () => {
                               type="text"
                               label="Address"
                               onBlur={handleBlur}
-                              onChange={handleChange}
+                              onChange={(e) => setDataTurf({...dataTurf, address: e.target.value})}
                               value={dataTurf.address}
                               name="address"
                               error={!!touched.address && !!errors.address}
@@ -191,7 +183,7 @@ const EditTurf = () => {
                               type="text"
                               label="Description"
                               onBlur={handleBlur}
-                              onChange={handleChange}
+                              onChange={(e) => setDataTurf({...dataTurf, description: e.target.value})}
                               value={dataTurf.description}
                               name="description"
                               error={!!touched.description && !!errors.description}
@@ -234,12 +226,6 @@ const EditTurf = () => {
     </ManageTurfListWrapper>
   );
 };
-
-const checkoutSchema = yup.object().shape({
-  name: yup.string().required("required name"),
-  address: yup.string().required("required address"),
-  image1: yup.string().required("required image"),
-});
 
 
 export default EditTurf;
