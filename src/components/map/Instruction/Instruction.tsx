@@ -101,7 +101,7 @@ const Instruction:React.FC<Props> = ({routingData, profileVehicle, setProfileVeh
         <div className='bottom'></div>
       </div> : 
         <h3>
-          Không tìm thấy hướng dẫnn cho đường đi này. Vui lòng thử lại sau. 
+          Không tìm thấy hướng dẫn cho đường đi. Vui lòng thử lại. 
         </h3>
         }
     </div>

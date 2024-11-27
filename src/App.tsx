@@ -17,6 +17,9 @@ import Account from "./screens/user/AccountScreen";
 import Order from "./screens/user/OrderListScreen";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import ManageTurfList from "./screens/user/manage/ManageTurfScreen";
+import CreateNewTurf from "./screens/user/manage/CreateTurfScreen";
+import EditTurf from "./screens/user/manage/EditTurfScreen";
 
 function App() {
   const { isLoggedIn } = useContext(AuthContext);
@@ -33,6 +36,9 @@ function App() {
             <Route path="/confirm" element={<ConfirmScreen />} />
             <Route path="/account" element={isLoggedIn ? <Account /> : <Navigate to="/sign_in" />} />
             <Route path="/order" element={isLoggedIn ? <Order /> : <Navigate to="/sign_in" />} />
+            <Route path="/manage/turfs" element={isLoggedIn ? <ManageTurfList /> : <Navigate to="/sign_in" />} />
+            <Route path="/manage/turfs/new" element={isLoggedIn ? <CreateNewTurf /> : <Navigate to="/sign_in" />} />
+            <Route path="/manage/turf/:id" element={isLoggedIn ? <EditTurf /> : <Navigate to="/sign_in" />} />
           </Route>
           <Route path="/" element={<AuthLayout />}>
             <Route path="sign_up" element={<SignUp />} />

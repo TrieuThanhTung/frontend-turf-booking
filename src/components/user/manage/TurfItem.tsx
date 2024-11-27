@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import { VNDFormating } from "../../utils/helper";
-import { breakpoints, defaultTheme } from "../../styles/themes/default";
-import { BookingType } from "../../utils/commonType";
+import { VNDFormating } from "../../../utils/helper";
+import { breakpoints, defaultTheme } from "../../../styles/themes/default";
+import { TurfField } from "../../../utils/commonType";
 import React from "react";
-import { staticImages } from "../../utils/images";
+import { staticImages } from "../../../utils/images";
+import { BaseLinkBlack } from "../../../styles/button";
 
 const OrderItemWrapper = styled.div`
   margin: 30px 0;
@@ -92,26 +93,39 @@ const OrderItemWrapper = styled.div`
 `;
 
 type Props = {
-  booking?: BookingType
+  turf: TurfField
 }
 
-const OrderItem: React.FC<Props> = ({ booking }) => {
+const TurfItem: React.FC<Props> = ({ turf }) => {
   return (
     <OrderItemWrapper>
       <div className="order-item-details">
-        <h3 className="text-x order-item-title">Order no: {booking?.id}</h3>
+        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+          <h3 className="text-x order-item-title">Name: {turf.name}</h3>
+          <div className="btn-and-price flex items-center flex-wrap">
+                <BaseLinkBlack
+                  className="prod-add-btn"
+                  to={`/manage/turf/${turf.id}`}
+                >
+                  <span className="prod-add-btn-icon">
+                    <i className="bi bi-cart2"></i>
+                  </span>
+                  <span className="prod-add-btn-text"> <b> Edit </b></span>
+                </BaseLinkBlack>
+              </div>
+        </div>
         <div className="order-info-group flex flex-wrap">
           <div className="order-info-item">
-            <span className="text-gray font-semibold">Booking Date:</span>
-            <span className="text-silver">{booking?.date}</span>
+            <span className="text-gray font-semibold">Price zone: </span>
+            <span className="text-silver">{`${VNDFormating(turf.prices[0].price)} - ${VNDFormating(turf.prices[turf.prices.length-1].price)}`}</span>
           </div>
           <div className="order-info-item">
-            <span className="text-gray font-semibold">Time zone: </span>
-            <span className="text-silver">{`${booking?.startTime} - ${booking?.endTime}`}</span>
+            <span className="text-gray font-semibold">Address:</span>
+            <span className="text-silver">{turf.address}</span>
           </div>
           <div className="order-info-item">
-            <span className="text-gray font-semibold">Order Status:</span>
-            <span className="text-silver">{"PENDING"}</span>
+            <span className="text-gray font-semibold">Created at:</span>
+            <span className="text-silver">{turf.createdAt}</span>
           </div>
         </div>
       </div>
@@ -119,21 +133,10 @@ const OrderItem: React.FC<Props> = ({ booking }) => {
         <div className="order-overview-content grid">
           <div className="order-overview-img">
             <img
-              src={booking?.turfImages || staticImages.ground_football}
+              src={turf.images[0]?.url || staticImages.ground_football}
               alt=""
               className="object-fit-cover"
             />
-          </div>
-          <div className="order-overview-info">
-            <h4 className="text-xl">{booking?.turfName}</h4>
-            <ul>
-              <li className="font-semibold text-base">
-                <span>Total:</span>
-                <span className="text-silver">
-                  {VNDFormating(booking?.price)}
-                </span>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
@@ -141,4 +144,4 @@ const OrderItem: React.FC<Props> = ({ booking }) => {
   );
 };
 
-export default OrderItem;
+export default TurfItem;

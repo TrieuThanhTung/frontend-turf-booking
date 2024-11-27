@@ -49,6 +49,25 @@ class TurfApi {
     if (!query) return;
     return await axiosNonToken.get(`/api/turfs/search?query=${query}`);
   }
+
+  public createTurf = async (data: unknown) => {
+    if(!data) return;
+    return await axiosToken.post("/api/turfs", data);
+  }
+
+  public getTurfsByOwner = async (page?: string | number) => {
+    let url = "/api/turfs/owner";
+    if (page) {
+      url = `${url}?page=${page}`
+    }
+    return await axiosToken.get(url);
+  }
+
+  public updateTurfById = async (id?: string, data?: unknown) => {
+    if(!data) return;
+    const url = `/api/turfs/${id}`
+    return await axiosToken.put(url, data);
+  }
 } 
 
 export default new TurfApi();

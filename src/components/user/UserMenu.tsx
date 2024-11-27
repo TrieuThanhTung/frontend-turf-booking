@@ -67,16 +67,17 @@ const NavMenuWrapper = styled.nav`
 
 const UserMenu = () => {
   const location = useLocation();
-  const { setIsLoggedIn } = useContext(AuthContext);
+  const { setIsLoggedIn, isAdminLoggedIn, setAdminLoggedIn } = useContext(AuthContext);
 
 
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
     setIsLoggedIn(false);
+    setAdminLoggedIn(false);
   }
   return (
     <div>
-      <Title titleText={"Hello Richard"} />
+      <Title titleText={"Hello"} />
       <p className="text-base font-light italic">Welcome to your account.</p>
 
       <NavMenuWrapper>
@@ -97,7 +98,7 @@ const UserMenu = () => {
               <span className="text-base font-semibold nav-link-text no-wrap">
                 My orders
               </span>
-            </Link>
+            </Link> 
           </li>
           <li className="nav-menu-item">
             <Link
@@ -117,6 +118,16 @@ const UserMenu = () => {
               </span>
             </Link>
           </li>
+          {isAdminLoggedIn && <li className="nav-menu-item">
+            <Link to="/manage/turfs" className={`nav-menu-link flex items-center`}>
+              <span className="nav-link-icon flex items-center justify-center">
+                <img src="./assets/icons/ac_sign_out.svg" alt="" />
+              </span>
+              <span className="text-base font-semibold nav-link-text no-wrap">
+                Manage Turf
+              </span>
+            </Link>
+          </li>}
           <li className="nav-menu-item">
             <Link onClick={handleLogout} to="/" className={`nav-menu-link flex items-center`}>
               <span className="nav-link-icon flex items-center justify-center">

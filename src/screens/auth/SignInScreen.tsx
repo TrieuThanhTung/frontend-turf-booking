@@ -12,6 +12,7 @@ import { useContext, useState } from "react";
 import TurfApi from "../../api/TurfApi";
 import { ToastContainer, toast } from 'react-toastify';
 import { AuthContext } from "../../context/AuthContext";
+import { jwtDecode } from "jwt-decode";
 
 const SignInScreenWrapper = styled.section`
   .form-separator {
@@ -45,7 +46,7 @@ const SignInScreenWrapper = styled.section`
 
 const SignInScreen = () => {
   const navigate = useNavigate()  // eslint-disable-line react-hooks/rules-of-hooks
-  const { setIsLoggedIn } = useContext(AuthContext);
+  const { setIsLoggedIn, setAdminLoggedIn } = useContext(AuthContext);
 
   const [email, setEmail] = useState('')
 
@@ -61,6 +62,10 @@ const SignInScreen = () => {
       })
       if (res.status === 200) {
         localStorage.setItem('accessToken', res.data.data.accessToken)
+        const decode: { email: string, role: string } = jwtDecode(res.data.data.accessToken)
+        if (decode && decode?.role === 'TURF_OWNER') {
+          setAdminLoggedIn(true)
+        }
         setIsLoggedIn(true)
         navigate('/')
       } else {
