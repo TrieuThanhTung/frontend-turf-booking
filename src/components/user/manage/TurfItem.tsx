@@ -5,6 +5,7 @@ import { TurfField } from "../../../utils/commonType";
 import React from "react";
 import { staticImages } from "../../../utils/images";
 import { BaseLinkBlack } from "../../../styles/button";
+import { Link } from "react-router-dom";
 
 const OrderItemWrapper = styled.div`
   margin: 30px 0;
@@ -101,7 +102,7 @@ const TurfItem: React.FC<Props> = ({ turf }) => {
     <OrderItemWrapper>
       <div className="order-item-details">
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
-          <h3 className="text-x order-item-title">Name: {turf.name}</h3>
+          <h3 className="text-x order-item-title"><Link to={`/turf/${turf.id}`}>Name: {turf.name}</Link></h3>
           <div className="btn-and-price flex items-center flex-wrap">
                 <BaseLinkBlack
                   className="prod-add-btn"
