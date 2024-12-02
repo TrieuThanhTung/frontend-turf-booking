@@ -1,6 +1,5 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
-import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import styled from "styled-components";
 import { Container } from "../../../styles/styles";
@@ -15,6 +14,7 @@ import TurfApi from "../../../api/TurfApi";
 import { toast, ToastContainer } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { TurfField } from "../../../utils/commonType";
+import { staticImages } from "../../../utils/images";
 
 
 const ManageTurfListWrapper = styled.div`
@@ -126,7 +126,7 @@ const EditTurf = () => {
         <UserDashboardWrapper>
           <UserMenu />
           <UserContent>
-            <Title titleText={"Turfs"} />
+            <Title titleText={"Edit Turf"} />
             <div className="order-tabs">
               <Grid container spacing={2}>
                 <Grid size={10}>
@@ -157,7 +157,7 @@ const EditTurf = () => {
                               type="text"
                               label="Name"
                               onBlur={handleBlur}
-                              onChange={(e) => setDataTurf({...dataTurf, name: e.target.value})}
+                              onChange={(e) => setDataTurf({ ...dataTurf, name: e.target.value })}
                               value={dataTurf.name}
                               name="name"
                               error={!!touched.name && !!errors.name}
@@ -170,7 +170,7 @@ const EditTurf = () => {
                               type="text"
                               label="Address"
                               onBlur={handleBlur}
-                              onChange={(e) => setDataTurf({...dataTurf, address: e.target.value})}
+                              onChange={(e) => setDataTurf({ ...dataTurf, address: e.target.value })}
                               value={dataTurf.address}
                               name="address"
                               error={!!touched.address && !!errors.address}
@@ -183,7 +183,7 @@ const EditTurf = () => {
                               type="text"
                               label="Description"
                               onBlur={handleBlur}
-                              onChange={(e) => setDataTurf({...dataTurf, description: e.target.value})}
+                              onChange={(e) => setDataTurf({ ...dataTurf, description: e.target.value })}
                               value={dataTurf.description}
                               name="description"
                               error={!!touched.description && !!errors.description}
@@ -192,18 +192,10 @@ const EditTurf = () => {
                             />
                             {dataTurf.images.map((image, index) => {
                               return (
-                                    <TextField key={index}
-                                  fullWidth
-                                  variant="filled"
-                                  type="text"
-                                  label="Image"
-                                  onBlur={handleBlur}
-                                  onChange={handleChange}
-                                  value={image.url}
-                                  name="image2"
-                                  error={!!touched.image2 && !!errors.image2}
-                                  helperText={touched.image2 && errors.image2}
-                                  sx={{ gridColumn: "span 4" }}
+                                <img key={index}
+                                  src={image.url || staticImages.ground_football}
+                                  alt=""
+                                  className="object-fit-cover"
                                 />
                               )
                             })}
