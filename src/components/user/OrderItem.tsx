@@ -136,7 +136,7 @@ const OrderItem: React.FC<Props> = ({ booking }) => {
                 </span>
               </li>
             </ul>
-            <Link to={`/map?turf_lat=${booking?.location_lat}&turf_lon=${booking?.location_lon}`}>
+            <Link to={`/map?turf_lat=${booking?.location_lat}&turf_lon=${booking?.location_lon}`} style={{color: 'blue', textDecoration: 'underline'}}>
                 Chỉ đường
               </Link>
           </div>

@@ -1,3 +1,4 @@
+import { RegisterType } from "../utils/commonType";
 import axiosNonToken from "./ApiNonToken";
 import axiosToken from "./ApiToken";
 
@@ -7,6 +8,10 @@ class TurfApi {
     password: string,
   }) => {
     return await axiosNonToken.post("/api/auth/login", data);
+  }
+
+  public signup = async (data: RegisterType) => {
+    return await axiosNonToken.post("/api/auth/register", data);
   }
 
   public getTurfs = async (page?: string) => {

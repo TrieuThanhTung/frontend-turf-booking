@@ -838,6 +838,13 @@ const booking = {
   "createdAt": "11:20 11/01/2024"
 }
 
+const registerData = {
+  "email": "owner2@turf.com",
+  "password": "abcd1234",
+  "firstName": "Mr",
+  "lastName": "Owner2"
+}
+
 const dataBookings = {
   "bookings": [
       booking
@@ -847,6 +854,7 @@ const dataBookings = {
 }
 
 export {
+  registerData,
   booking,
   dataBookings,
   dataProfile,

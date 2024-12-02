@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import {
-  CheckboxGroup,
   FormGridWrapper,
   FormTitle,
 } from "../../styles/form_grid";
@@ -9,8 +8,12 @@ import { staticImages } from "../../utils/images";
 import AuthOptions from "../../components/auth/AuthOptions";
 import { FormElement, Input } from "../../styles/form";
 import PasswordInput from "../../components/auth/PasswordInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BaseButtonBlack } from "../../styles/button";
+import { useState } from "react";
+import { RegisterType } from "../../utils/commonType";
+import TurfApi from "../../api/TurfApi";
+import { toast, ToastContainer } from "react-toastify";
 
 const SignUpScreenWrapper = styled.section`
   form {
@@ -27,9 +30,36 @@ const SignUpScreenWrapper = styled.section`
 `;
 
 const SignUpScreen = () => {
+  const navigate = useNavigate()
+  const [data, setData] = useState<RegisterType>() 
+  const [password, setPassword] = useState<string>("")
+
+  const handleSubmit = async (e: React.FormEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    if(!data || !password) {
+      return;
+    }
+    setData({...data, password: password});
+    console.log(data);
+    try {
+      const res = await TurfApi.signup(data!)
+      if (res.status === 200) {
+        toast.success('Sign up successful, please login')
+        setTimeout(() => {
+          navigate('/sign_in')
+        }, 2500)
+      } else {
+        toast.error(res.data.message)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <SignUpScreenWrapper>
-      <FormGridWrapper>
+      <ToastContainer autoClose={2000} />
+      <FormGridWrapper onSubmit={handleSubmit}>
         <Container>
           <div className="form-grid-content">
             <div className="form-grid-left">
@@ -50,45 +80,41 @@ const SignUpScreen = () => {
               <form>
                 <FormElement>
                   <label htmlFor="" className="forme-elem-label">
-                    User name or email address
+                    First name
                   </label>
                   <Input
                     type="text"
                     placeholder=""
                     name=""
                     className="form-elem-control"
+                    onChange={(e) => setData({...data!, firstName: e.target.value})}
                   />
-                  <span className="form-elem-error">
-                    *Please enter valid email address.
-                  </span>
                 </FormElement>
-                <PasswordInput fieldName="Password" name="password" />
-                <span className="form-elem-text font-medium">
-                  Use 8 or more characters with a mix of letters, numbers &
-                  symbols
-                </span>
-
-                <CheckboxGroup>
-                  <li className="flex items-center">
-                    <input type="checkbox" />
-                    <span className="text-sm">
-                      Agree to our
-                      <Link to="/" className="text-underline">
-                        Terms of use
-                      </Link>
-                      <span className="text-space">and</span>
-                      <Link to="/" className="text-underline">
-                        Privacy Policy
-                      </Link>
-                    </span>
-                  </li>
-                  <li className="flex items-center">
-                    <input type="checkbox" />
-                    <span className="text-sm">
-                      Subscribe to our monthly newsletter
-                    </span>
-                  </li>
-                </CheckboxGroup>
+                <FormElement>
+                  <label htmlFor="" className="forme-elem-label">
+                    Last name
+                  </label>
+                  <Input
+                    type="text"
+                    placeholder=""
+                    name=""
+                    className="form-elem-control"
+                    onChange={(e) => setData({...data!, lastName: e.target.value})}
+                  />
+                </FormElement>
+                <FormElement>
+                  <label htmlFor="" className="forme-elem-label">
+                    Email
+                  </label>
+                  <Input
+                    type="text"
+                    placeholder=""
+                    name=""
+                    className="form-elem-control"
+                    onChange={(e) => setData({...data!, email: e.target.value})}
+                  />
+                </FormElement>
+                <PasswordInput fieldName="Password" name="password" setPassword={setPassword}/>
                 <BaseButtonBlack type="submit" className="form-submit-btn">
                   Sign Up
                 </BaseButtonBlack>
