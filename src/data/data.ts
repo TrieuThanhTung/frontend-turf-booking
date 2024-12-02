@@ -825,14 +825,24 @@ const dataProfile = {
 
 const booking = {
   "id": 2,
+  "turfId": 1,
   "turfName": "Sân bóng đá Phi Liêng",
   "turfAddress": "QL27, Xã Đạ K' Nàng, Huyện Đam Rông, Lâm Đồng",
+  "location_lat": 21.028511,
+  "location_lon": 105.80482,
   "turfImages": null,
   "startTime": "16:00",
   "endTime": "17:30",
   "date": "11/27/2024",
   "price": 800000.0,
   "createdAt": "11:20 11/01/2024"
+}
+
+const registerData = {
+  "email": "owner2@turf.com",
+  "password": "abcd1234",
+  "firstName": "Mr",
+  "lastName": "Owner2"
 }
 
 const dataBookings = {
@@ -844,6 +854,7 @@ const dataBookings = {
 }
 
 export {
+  registerData,
   booking,
   dataBookings,
   dataProfile,

@@ -128,6 +128,16 @@ const UserMenu = () => {
               </span>
             </Link>
           </li>}
+          {isAdminLoggedIn && <li className="nav-menu-item">
+            <Link to="/manage/orders" className={`nav-menu-link flex items-center`}>
+              <span className="nav-link-icon flex items-center justify-center">
+                <img src="./assets/icons/ac_sign_out.svg" alt="" />
+              </span>
+              <span className="text-base font-semibold nav-link-text no-wrap">
+                Manage Turf Orders
+              </span>
+            </Link>
+          </li>}
           <li className="nav-menu-item">
             <Link onClick={handleLogout} to="/" className={`nav-menu-link flex items-center`}>
               <span className="nav-link-icon flex items-center justify-center">

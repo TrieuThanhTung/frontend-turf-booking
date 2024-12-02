@@ -53,7 +53,8 @@ const SignInScreen = () => {
   const [password, setPassword] = useState('')
 
 
-  const handleSignIn = async () => {
+  const handleSignIn = async (e: React.FormEvent<HTMLDivElement>) => {
+    e.preventDefault();
     console.log(email, password)
     try {
       const res = await TurfApi.signin({
@@ -79,7 +80,7 @@ const SignInScreen = () => {
   return (
     <SignInScreenWrapper>
       <ToastContainer />
-      <FormGridWrapper>
+      <FormGridWrapper onSubmit={handleSignIn}>
         <Container>
           <div className="form-grid-content">
             <div className="form-grid-left">
@@ -118,7 +119,7 @@ const SignInScreen = () => {
                 >
                   Forgot your password?
                 </Link>
-                <BaseButtonBlack type="button" className="form-submit-btn" onClick={handleSignIn}>
+                <BaseButtonBlack type="submit" className="form-submit-btn">
                   Sign In
                 </BaseButtonBlack>
               </form>
