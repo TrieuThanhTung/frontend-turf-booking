@@ -825,8 +825,11 @@ const dataProfile = {
 
 const booking = {
   "id": 2,
+  "turfId": 1,
   "turfName": "Sân bóng đá Phi Liêng",
   "turfAddress": "QL27, Xã Đạ K' Nàng, Huyện Đam Rông, Lâm Đồng",
+  "location_lat": 21.028511,
+  "location_lon": 105.80482,
   "turfImages": null,
   "startTime": "16:00",
   "endTime": "17:30",

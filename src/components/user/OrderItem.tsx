@@ -4,6 +4,8 @@ import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import { BookingType } from "../../utils/commonType";
 import React from "react";
 import { staticImages } from "../../utils/images";
+import { Link } from "react-router-dom";
+import { blue } from "@mui/material/colors";
 
 const OrderItemWrapper = styled.div`
   margin: 30px 0;
@@ -125,7 +127,7 @@ const OrderItem: React.FC<Props> = ({ booking }) => {
             />
           </div>
           <div className="order-overview-info">
-            <h4 className="text-xl">{booking?.turfName}</h4>
+            <h4 className="text-xl"><Link to={`/turf/${booking?.turfId}`}>{booking?.turfName}</Link></h4>
             <ul>
               <li className="font-semibold text-base">
                 <span>Total:</span>
@@ -134,6 +136,9 @@ const OrderItem: React.FC<Props> = ({ booking }) => {
                 </span>
               </li>
             </ul>
+            <Link to={`/map?turf_lat=${booking?.location_lat}&turf_lon=${booking?.location_lon}`}>
+                Chỉ đường
+              </Link>
           </div>
         </div>
       </div>

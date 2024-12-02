@@ -45,6 +45,18 @@ class TurfApi {
     return await axiosToken.get(url);
   }
 
+  public getBookingsByOwner = async (page?: string | number, status?: string) => {
+    let url = "/api/bookings/owner";
+    if (page && status) {
+      url = `${url}?page=${page}&status=${status}`
+    } else if (page) {
+      url = `${url}?page=${page}`
+    } else if (status) {
+      url = `${url}?status=${status}`
+    }
+    return await axiosToken.get(url);
+  }
+
   public searchTurfs = async(query?: string) => {
     if (!query) return;
     return await axiosNonToken.get(`/api/turfs/search?query=${query}`);
